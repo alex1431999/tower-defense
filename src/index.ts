@@ -1,7 +1,10 @@
 import {canvas} from "./canvas.js";
+import {Engine} from "./engine.js";
 
 function main() {
-    console.log(canvas.id)
+    const engine = new Engine(canvas)
+
+    engine.setup()
 }
 
 main()

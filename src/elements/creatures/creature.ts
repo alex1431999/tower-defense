@@ -13,6 +13,20 @@ export class ElementCreature extends GameElement {
     }
 
     public move(mapLayout: MapLayout) {
+        const nextPosition = this.getNextPosition(mapLayout)
+
+        if (nextPosition === null) {
+            throw new Error(`There is no next position to move to from ${JSON.stringify(this.position)}`)
+        }
+
+        this.positionPrevious = this.position
+        this.position = nextPosition
+    }
+
+    /**
+     *  If this function returns null we know we have reached the end of the the map
+     */
+    public getNextPosition(mapLayout: MapLayout): ElementPosition | null {
         const position = this.position
 
         const {x, y} = position
@@ -23,19 +37,16 @@ export class ElementCreature extends GameElement {
         }
 
         if (this.canMoveToTile(mapLayout, x + 1, y)) {
-            this.position = {x: x + 1, y}
+            return {x: x + 1, y}
         } else if (this.canMoveToTile(mapLayout, x - 1, y)) {
-            this.position = {x: x - 1, y}
+            return {x: x - 1, y}
         } else if (this.canMoveToTile(mapLayout, x, y + 1)) {
-            this.position = {x, y: y + 1}
+            return {x, y: y + 1}
         } else if (this.canMoveToTile(mapLayout, x, y - 1)) {
-            this.position = {x, y: y - 1}
+            return {x, y: y - 1}
         } else {
-            throw new Error(`No more tiles to move to at position ${JSON.stringify(this.position)}`)
+            return null
         }
-
-        this.positionPrevious = position
-
     }
 
     private canMoveToTile(mapLayout: MapLayout, x: number, y: number): boolean {

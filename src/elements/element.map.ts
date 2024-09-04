@@ -17,11 +17,13 @@ export class ElementMap extends GameElement {
     private generateTiles(): ElementTile[] {
         const tiles = []
 
-        for (let y = 0; y < this.mapLayout.length; y += 1) {
-            const row = this.mapLayout[y]
+        for (let i = 0; i < this.mapLayout.length; i += 1) {
+            const row = this.mapLayout[i]
 
-            for (let x = 0; x < row.length; x += 1) {
-                const identifier = row[x]
+            for (let j = 0; j < row.length; j += 1) {
+                const identifier = row[j]
+                const x = j * ElementTile.WIDTH
+                const y = i * ElementTile.HEIGHT
                 const TileClass = TILE_CLASSES_MAP[identifier]
                 const tile = new TileClass({x, y})
 

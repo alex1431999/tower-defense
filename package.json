@@ -5,10 +5,14 @@
   "author": "alex1431999 <alexhaller99@yahoo.de>",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "http-server ./"
   },
   "dependencies": {
+    "http-server": "^14.1.1",
     "typescript": "^5.5.4"
   },
   "devDependencies": {

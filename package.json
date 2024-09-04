@@ -4,5 +4,14 @@
   "main": "index.ts",
   "author": "alex1431999 <alexhaller99@yahoo.de>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/typescript": "^2.0.0"
+  }
 }

@@ -1,5 +1,10 @@
+import {ElementMap} from "./elements/element.map.js";
+import {GameElement} from "./elements/element.js";
+
 export class Engine {
     public canvas: HTMLCanvasElement
+
+    public elements: GameElement[] = [new ElementMap()]
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas
@@ -12,6 +17,6 @@ export class Engine {
     }
 
     public draw() {
-        // TODO
+        this.elements.forEach(element => element.draw())
     }
 }

@@ -14,6 +14,16 @@ export class ElementMap extends GameElement {
         this.elements = this.generateTiles()
     }
 
+    public get width() {
+        // We assume that each row has the same length
+        const firstRow = this.mapLayout[0]
+        return firstRow.length * ElementTile.WIDTH
+    }
+
+    public get height() {
+        return this.mapLayout.length * ElementTile.HEIGHT
+    }
+
     private generateTiles(): ElementTile[] {
         const tiles = []
 

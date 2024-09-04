@@ -5,15 +5,19 @@ import {MAP_FIRST} from "./maps/map.first.js";
 export class Engine {
     public canvas: HTMLCanvasElement
 
-    public elements: GameElement[] = [new ElementMap(MAP_FIRST)]
+    public elementMap: ElementMap = new ElementMap(MAP_FIRST)
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas
     }
 
+    public get elements(): GameElement[] {
+        return [this.elementMap]
+    }
+
     public setup() {
-        this.canvas.width = 700
-        this.canvas.height = 700
+        this.canvas.width = this.elementMap.width
+        this.canvas.height = this.elementMap.height
         this.canvas.style.background = 'black'
     }
 

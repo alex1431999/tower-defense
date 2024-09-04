@@ -17,8 +17,8 @@ export abstract class ElementTile extends GameElement {
         super(config);
     }
 
-    public draw() {
-        super.draw();
+    public draw(frameCount: number) {
+        super.draw(frameCount);
 
         this.context.fillStyle = this.color
         this.context.fillRect(this.canvasPosition.x, this.canvasPosition.y, ElementTile.WIDTH, ElementTile.HEIGHT)

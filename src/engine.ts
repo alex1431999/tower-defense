@@ -24,6 +24,6 @@ export class Engine {
     }
 
     public draw() {
-        this.elements.forEach(element => element.draw())
+        this.elements.forEach(element => element.draw(this.frameCount))
     }
 }

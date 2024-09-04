@@ -6,8 +6,8 @@ export class ElementCreatureNali extends ElementCreature {
 
     public static HEIGHT = Math.ceil(ElementTile.HEIGHT / 2)
 
-    public draw() {
-        super.draw();
+    public draw(frameCount: number) {
+        super.draw(frameCount);
 
 
         this.context.fillStyle = 'brown'

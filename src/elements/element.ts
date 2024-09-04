@@ -33,7 +33,7 @@ export class GameElement {
     /**
      * Gets triggered on each frame
      */
-    public draw() {
-        this.elements.map(element => element.draw())
+    public draw(frameCount: number) {
+        this.elements.map(element => element.draw(frameCount))
     }
 }

@@ -6,6 +6,7 @@ import {ElementCreatureNali} from "./creatures/creature.nali.js";
 import {ElementCreature} from "./creatures/creature.js";
 import {state} from "../state.js";
 import {ElementTower} from "./tower/tower.js";
+import {ElementTowerArrow} from "./tower/tower.arrow.js";
 
 export class ElementMap extends GameElement {
     public mapLayout: MapLayout
@@ -20,8 +21,11 @@ export class ElementMap extends GameElement {
 
         // Add one test creature for now
         const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 50, y: 50}})
-        this.elements.push(nali)
         this.creatures.push(nali)
+
+        // Add one test tower for now
+        const testTower = new ElementTowerArrow({position: {x: 3, y: 2}, offset: {x: 50, y: 50}})
+        this.towers.push(testTower)
     }
 
     public get elements(): GameElement[] {

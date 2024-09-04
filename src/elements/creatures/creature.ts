@@ -53,6 +53,9 @@ export abstract class ElementCreature extends GameElement {
         }
     }
 
+    /**
+     * By default, center all creatures in the middle of the tile
+     */
     public get canvasPosition(): ElementPosition {
         const position = super.canvasPosition
 

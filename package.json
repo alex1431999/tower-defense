@@ -1,0 +1,8 @@
+{
+  "name": "canvas-game",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "alex1431999 <alexhaller99@yahoo.de>",
+  "license": "MIT",
+  "private": true
+}

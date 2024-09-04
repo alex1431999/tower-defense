@@ -42,7 +42,7 @@ export class ElementMap extends GameElement {
 
     private moveCreatures(frameCount: number) {
         this.creatures.forEach((creature, index) => {
-            if (frameCount % creature.speed === 0) {
+            if (frameCount % (1 / creature.speed) === 0) {
                 const nextPosition = creature.getNextPosition(this.mapLayout)
 
                 if (nextPosition !== null) {

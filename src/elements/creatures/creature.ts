@@ -1,11 +1,15 @@
 import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {MapLayout} from "../../maps/maps.types";
-import {TileIdentifier} from "../tiles/element.tile";
+import {ElementTile, TileIdentifier} from "../tiles/element.tile.js";
 
 export class ElementCreature extends GameElement {
     public speed: number = 1
 
     public positionPrevious: ElementPosition
+
+    public width = 25
+
+    public height = 25
 
     constructor(config?: ElementConfig) {
         super(config);
@@ -45,6 +49,15 @@ export class ElementCreature extends GameElement {
         } else {
             return null
         }
+    }
+
+    public get canvasPosition(): ElementPosition {
+        const position = super.canvasPosition
+
+        position.x += (ElementTile.WIDTH - this.width) / 2
+        position.y += (ElementTile.HEIGHT - this.height) / 2
+
+        return position
     }
 
     private canMoveToTile(mapLayout: MapLayout, x: number, y: number): boolean {

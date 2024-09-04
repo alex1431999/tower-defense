@@ -2,7 +2,9 @@ import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {MapLayout} from "../../maps/maps.types";
 import {ElementTile, TileIdentifier} from "../tiles/element.tile.js";
 
-export class ElementCreature extends GameElement {
+export abstract class ElementCreature extends GameElement {
+    public abstract healthPoints: number
+
     public speed: number = 1
 
     public positionPrevious: ElementPosition

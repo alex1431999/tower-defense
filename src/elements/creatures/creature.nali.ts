@@ -1,6 +1,8 @@
 import {ElementCreature} from "./creature.js";
 
 export class ElementCreatureNali extends ElementCreature {
+    public healthPoints: number = 3
+
     public draw(frameCount: number) {
         super.draw(frameCount);
 

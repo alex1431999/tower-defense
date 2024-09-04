@@ -2,14 +2,23 @@ import {GameElement} from "../element.js";
 
 export type TilePosition = { x: number, y: number }
 
+export type TileIdentifier = 'pa' | 'pl'
+
 export abstract class ElementTile extends GameElement {
-    public position: TilePosition = {x: 0, y: 0}
+    public position: TilePosition
 
     public static WIDTH = 50
 
     public static HEIGHT = 50
 
     protected abstract color: string
+
+    protected abstract identifier: TileIdentifier
+
+    constructor(position: TilePosition) {
+        super();
+        this.position = position
+    }
 
     public draw() {
         super.draw();

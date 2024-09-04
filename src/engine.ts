@@ -1,10 +1,11 @@
 import {ElementMap} from "./elements/element.map.js";
 import {GameElement} from "./elements/element.js";
+import {MAP_FIRST} from "./maps/map.first.js";
 
 export class Engine {
     public canvas: HTMLCanvasElement
 
-    public elements: GameElement[] = [new ElementMap()]
+    public elements: GameElement[] = [new ElementMap(MAP_FIRST)]
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas

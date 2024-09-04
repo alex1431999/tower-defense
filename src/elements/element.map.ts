@@ -15,8 +15,7 @@ export class ElementMap extends GameElement {
         this.elements = this.generateTiles()
 
         // Add one test creature for now
-        const nali = new ElementCreatureNali()
-        nali.position = {x: 0, y: 65}
+        const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 0, y: 65}})
         this.elements.push(nali)
     }
 
@@ -33,15 +32,13 @@ export class ElementMap extends GameElement {
     private generateTiles(): ElementTile[] {
         const tiles = []
 
-        for (let i = 0; i < this.mapLayout.length; i += 1) {
-            const row = this.mapLayout[i]
+        for (let y = 0; y < this.mapLayout.length; y += 1) {
+            const row = this.mapLayout[y]
 
-            for (let j = 0; j < row.length; j += 1) {
-                const identifier = row[j]
-                const x = j * ElementTile.WIDTH
-                const y = i * ElementTile.HEIGHT
+            for (let x = 0; x < row.length; x += 1) {
+                const identifier = row[x]
                 const TileClass = TILE_CLASSES_MAP[identifier]
-                const tile = new TileClass({x, y})
+                const tile = new TileClass({position: {x, y}, offset: {x: ElementTile.WIDTH, y: ElementTile.HEIGHT}})
 
                 tiles.push(tile)
             }

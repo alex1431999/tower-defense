@@ -1,12 +1,10 @@
-import {GameElement} from "../element.js";
-
-export type TilePosition = { x: number, y: number }
+import {ElementOffset, ElementPosition, GameElement} from "../element.js";
 
 export type TileIdentifier = 'pa' | 'pl'
 
-export abstract class ElementTile extends GameElement {
-    public position: TilePosition
+export type TileConfig = { position: ElementPosition, offset: ElementOffset }
 
+export abstract class ElementTile extends GameElement {
     public static WIDTH = 50
 
     public static HEIGHT = 50
@@ -15,15 +13,14 @@ export abstract class ElementTile extends GameElement {
 
     protected abstract identifier: TileIdentifier
 
-    constructor(position: TilePosition) {
-        super();
-        this.position = position
+    constructor(config: TileConfig) {
+        super(config);
     }
 
     public draw() {
         super.draw();
 
         this.context.fillStyle = this.color
-        this.context.fillRect(this.position.x, this.position.y, ElementTile.WIDTH, ElementTile.HEIGHT)
+        this.context.fillRect(this.canvasPosition.x, this.canvasPosition.y, ElementTile.WIDTH, ElementTile.HEIGHT)
     }
 }

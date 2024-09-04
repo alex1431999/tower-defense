@@ -1,6 +1,7 @@
 import {ElementMap} from "./elements/element.map.js";
 import {GameElement} from "./elements/element.js";
 import {MAP_FIRST} from "./maps/map.first.js";
+import {State} from "./state.js";
 
 export class Engine {
     public canvas: HTMLCanvasElement
@@ -8,6 +9,8 @@ export class Engine {
     public elementMap: ElementMap = new ElementMap(MAP_FIRST)
 
     public frameCount = 0
+
+    public state = new State({healthPoints: 10})
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas

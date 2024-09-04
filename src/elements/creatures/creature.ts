@@ -27,13 +27,11 @@ export class ElementCreature extends GameElement {
      *  If this function returns null we know we have reached the end of the the map
      */
     public getNextPosition(mapLayout: MapLayout): ElementPosition | null {
-        const position = this.position
-
-        const {x, y} = position
+        const {x, y} = this.position
 
         const currentTile = mapLayout[y][x]
         if (currentTile === undefined) {
-            throw new Error(`Creature is outside of the map at position: ${JSON.stringify(position)}`)
+            throw new Error(`Creature is outside of the map at position: ${JSON.stringify(this.position)}`)
         }
 
         if (this.canMoveToTile(mapLayout, x + 1, y)) {

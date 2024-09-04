@@ -3,7 +3,8 @@ import {MapLayout} from "../maps/maps.types.js";
 import {ElementTile} from "./tiles/element.tile.js";
 import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
 import {ElementCreatureNali} from "./creatures/creature.nali.js";
-import {ElementCreature} from "./creatures/creature";
+import {ElementCreature} from "./creatures/creature.js";
+import {state} from "../state.js";
 
 export class ElementMap extends GameElement {
     public mapLayout: MapLayout
@@ -40,9 +41,16 @@ export class ElementMap extends GameElement {
     }
 
     private moveCreatures(frameCount: number) {
-        this.creatures.forEach(creature => {
+        this.creatures.forEach((creature, index) => {
             if (frameCount % creature.speed === 0) {
-                creature.move(this.mapLayout)
+                const nextPosition = creature.getNextPosition(this.mapLayout)
+
+                if (nextPosition !== null) {
+                    creature.move(this.mapLayout)
+                } else {
+                    state.healthPoints -= 1
+                    this.creatures.splice(index, 1)
+                }
             }
         })
     }

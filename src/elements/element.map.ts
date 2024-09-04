@@ -5,11 +5,14 @@ import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
 import {ElementCreatureNali} from "./creatures/creature.nali.js";
 import {ElementCreature} from "./creatures/creature.js";
 import {state} from "../state.js";
+import {ElementTower} from "./tower/tower.js";
 
 export class ElementMap extends GameElement {
     public mapLayout: MapLayout
 
     public creatures: ElementCreature[] = []
+
+    public towers: ElementTower[] = []
 
     constructor(mapLayout: MapLayout) {
         super();
@@ -22,7 +25,7 @@ export class ElementMap extends GameElement {
     }
 
     public get elements(): GameElement[] {
-        return [...this.generateTiles(), ...this.creatures]
+        return [...this.generateTiles(), ...this.creatures, ...this.towers]
     }
 
     public get width() {

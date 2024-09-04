@@ -1,6 +1,6 @@
 import {GameElement} from "../element.js";
 
-export abstract class Tower extends GameElement {
+export abstract class ElementTower extends GameElement {
     public abstract damage: number
 
     // Any field that is within this range can be attacked by this tower

@@ -1,6 +1,6 @@
-import {Tower} from "./tower.js";
+import {ElementTower} from "./tower.js";
 
-export class TowerArrow extends Tower {
+export class ElementTowerArrow extends ElementTower {
     public damage = 1
 
     public range = 2

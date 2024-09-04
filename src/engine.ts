@@ -6,7 +6,9 @@ export class Engine {
     }
 
     public setup() {
-        // TODO
+        this.canvas.width = 700
+        this.canvas.height = 700
+        this.canvas.style.background = 'black'
     }
 
     public draw() {

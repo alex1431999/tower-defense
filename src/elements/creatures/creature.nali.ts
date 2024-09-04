@@ -9,8 +9,6 @@ export class ElementCreatureNali extends ElementCreature {
     public draw(frameCount: number) {
         super.draw(frameCount);
 
-        console.log(this.canvasPosition)
-
         this.context.fillStyle = 'brown'
         this.context.fillRect(this.canvasPosition.x, this.canvasPosition.y, ElementCreatureNali.WIDTH, ElementCreatureNali.HEIGHT)
     }

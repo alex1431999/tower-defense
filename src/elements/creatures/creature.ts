@@ -13,14 +13,14 @@ export class ElementCreature extends GameElement {
     }
 
     public move(mapLayout: MapLayout) {
-        const {x, y} = this.position
+        const position = this.position
+
+        const {x, y} = position
 
         const currentTile = mapLayout[y][x]
         if (currentTile === undefined) {
-            throw new Error(`Creature is outside of the map at position: ${JSON.stringify(this.position)}`)
+            throw new Error(`Creature is outside of the map at position: ${JSON.stringify(position)}`)
         }
-
-        this.positionPrevious = this.position
 
         if (this.canMoveToTile(mapLayout, x + 1, y)) {
             this.position = {x: x + 1, y}
@@ -33,6 +33,8 @@ export class ElementCreature extends GameElement {
         } else {
             throw new Error(`No more tiles to move to at position ${JSON.stringify(this.position)}`)
         }
+
+        this.positionPrevious = position
 
     }
 

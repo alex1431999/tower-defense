@@ -15,7 +15,7 @@ export class ElementMap extends GameElement {
         this.mapLayout = mapLayout
 
         // Add one test creature for now
-        const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 50, y: 65}})
+        const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 50, y: 50}})
         this.elements.push(nali)
         this.creatures.push(nali)
     }

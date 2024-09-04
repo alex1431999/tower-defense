@@ -15,7 +15,7 @@ export class ElementMap extends GameElement {
         this.mapLayout = mapLayout
 
         // Add one test creature for now
-        const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 0, y: 65}})
+        const nali = new ElementCreatureNali({position: {x: 0, y: 1}, offset: {x: 50, y: 65}})
         this.elements.push(nali)
         this.creatures.push(nali)
     }
@@ -32,6 +32,19 @@ export class ElementMap extends GameElement {
 
     public get height() {
         return this.mapLayout.length * ElementTile.HEIGHT
+    }
+
+    public draw(frameCount: number) {
+        super.draw(frameCount)
+        this.moveCreatures(frameCount)
+    }
+
+    private moveCreatures(frameCount: number) {
+        this.creatures.forEach(creature => {
+            if (frameCount % creature.speed === 0) {
+                creature.move(this.mapLayout)
+            }
+        })
     }
 
     private generateTiles(): ElementTile[] {

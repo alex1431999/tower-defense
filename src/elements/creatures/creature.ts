@@ -20,6 +20,8 @@ export class ElementCreature extends GameElement {
             throw new Error(`Creature is outside of the map at position: ${JSON.stringify(this.position)}`)
         }
 
+        this.positionPrevious = this.position
+
         if (this.canMoveToTile(mapLayout, x + 1, y)) {
             this.position = {x: x + 1, y}
         } else if (this.canMoveToTile(mapLayout, x - 1, y)) {

@@ -20,13 +20,13 @@ export class ElementCreature extends GameElement {
             throw new Error(`Creature is outside of the map at position: ${JSON.stringify(this.position)}`)
         }
 
-        if (this.canMoveToFile(mapLayout, x + 1, y)) {
+        if (this.canMoveToTile(mapLayout, x + 1, y)) {
             this.position = {x: x + 1, y}
-        } else if (this.canMoveToFile(mapLayout, x - 1, y)) {
+        } else if (this.canMoveToTile(mapLayout, x - 1, y)) {
             this.position = {x: x - 1, y}
-        } else if (this.canMoveToFile(mapLayout, x, y + 1)) {
+        } else if (this.canMoveToTile(mapLayout, x, y + 1)) {
             this.position = {x, y: y + 1}
-        } else if (this.canMoveToFile(mapLayout, x, y - 1)) {
+        } else if (this.canMoveToTile(mapLayout, x, y - 1)) {
             this.position = {x, y: y - 1}
         } else {
             throw new Error(`No more tiles to move to at position ${JSON.stringify(this.position)}`)
@@ -34,7 +34,7 @@ export class ElementCreature extends GameElement {
 
     }
 
-    private canMoveToFile(mapLayout: MapLayout, x: number, y: number): boolean {
+    private canMoveToTile(mapLayout: MapLayout, x: number, y: number): boolean {
         const tileIdentifier = this.getTileAt(mapLayout, x, y)
 
         // Out of the map

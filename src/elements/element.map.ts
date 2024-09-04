@@ -2,6 +2,7 @@ import {GameElement} from "./element.js";
 import {MapLayout} from "../maps/maps.types.js";
 import {ElementTile} from "./tiles/element.tile.js";
 import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
+import {ElementCreatureNali} from "./creatures/creature.nali.js";
 
 export class ElementMap extends GameElement {
     public elements: GameElement[]
@@ -12,6 +13,11 @@ export class ElementMap extends GameElement {
         super();
         this.mapLayout = mapLayout
         this.elements = this.generateTiles()
+
+        // Add one test creature for now
+        const nali = new ElementCreatureNali()
+        nali.position = {x: 0, y: 65}
+        this.elements.push(nali)
     }
 
     public get width() {

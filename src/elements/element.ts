@@ -9,11 +9,13 @@ export type ElementConfig = { position?: ElementPosition, offset?: ElementOffset
 export class GameElement {
     public canvas: HTMLCanvasElement = canvas
 
-    public elements: GameElement[] = []
-
     public position: ElementPosition
 
     public offset: ElementOffset
+
+    public get elements(): GameElement[] {
+        return []
+    }
 
     constructor(config?: ElementConfig) {
         this.position = config?.position || {x: 0, y: 0}

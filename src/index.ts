@@ -8,7 +8,10 @@ function main() {
 
     engine.setup()
 
-    setInterval(engine.draw.bind(engine), REFRESH_INTERVAL)
+    setInterval(() => {
+        engine.draw()
+        engine.frameCount += 1
+    }, REFRESH_INTERVAL)
 }
 
 main()

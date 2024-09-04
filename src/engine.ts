@@ -7,6 +7,8 @@ export class Engine {
 
     public elementMap: ElementMap = new ElementMap(MAP_FIRST)
 
+    public frameCount = 0
+
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas
     }

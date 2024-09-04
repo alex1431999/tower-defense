@@ -5,6 +5,8 @@ import {ElementTile, TileIdentifier} from "../tiles/element.tile.js";
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number
 
+    public abstract maxHealthPoints: number
+
     public speed: number = 1
 
     public positionPrevious: ElementPosition
@@ -16,6 +18,11 @@ export abstract class ElementCreature extends GameElement {
     constructor(config?: ElementConfig) {
         super(config);
         this.positionPrevious = this.position
+    }
+
+    public draw(frameCount: number) {
+        super.draw(frameCount);
+        this.drawHealthBar()
     }
 
     public move(mapLayout: MapLayout) {
@@ -98,5 +105,21 @@ export abstract class ElementCreature extends GameElement {
         }
 
         return row[x]
+    }
+
+    private drawHealthBar() {
+        const Y_OFFSET = 3
+
+        const availableSpace = this.width
+        const healthPointsRemaining = this.maxHealthPoints / this.healthPoints
+        const healthBarSize = availableSpace * healthPointsRemaining
+
+        this.context.lineWidth = 3
+        this.context.strokeStyle = 'red'
+
+        this.context.beginPath()
+        this.context.moveTo(this.canvasPosition.x, this.canvasPosition.y - Y_OFFSET)
+        this.context.lineTo(this.canvasPosition.x + healthBarSize, this.canvasPosition.y - Y_OFFSET)
+        this.context.stroke()
     }
 }

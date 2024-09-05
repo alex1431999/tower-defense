@@ -6,17 +6,21 @@ export class ElementTowerArrow extends ElementTower {
 
     public range = 2
 
-    public attack(creatures: ElementCreature[]) {
+    public attackSpeed = 2
+
+    public doAttack(creatures: ElementCreature[]) {
         const creaturesInRange = this.getCreaturesInRange(creatures)
 
         // Nothing in range so we don't attack
         if (!creaturesInRange.length) {
-            return
+            return false
         }
 
         const [firstCreature] = creaturesInRange
 
         firstCreature.takeDamage(this.damage)
+
+        return true
     }
 
     public draw(frameCount: number) {

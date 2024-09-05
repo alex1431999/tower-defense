@@ -45,6 +45,7 @@ export class ElementMap extends GameElement {
     public draw(frameCount: number) {
         super.draw(frameCount)
         this.moveCreatures(frameCount)
+        this.letTowersAttack()
     }
 
     private moveCreatures(frameCount: number) {
@@ -60,6 +61,17 @@ export class ElementMap extends GameElement {
                 }
             }
         })
+    }
+
+    private letTowersAttack() {
+        this.towers.forEach(tower => {
+            tower.attack(this.creatures)
+            this.removeDeadCreatures()
+        })
+    }
+
+    private removeDeadCreatures() {
+        this.creatures = this.creatures.filter(creature => creature.healthPoints > 0)
     }
 
     private generateTiles(): ElementTile[] {

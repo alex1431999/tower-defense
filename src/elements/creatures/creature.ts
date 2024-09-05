@@ -60,6 +60,10 @@ export abstract class ElementCreature extends GameElement {
         }
     }
 
+    public takeDamage(amount: number) {
+        this.healthPoints -= amount
+    }
+
     /**
      * By default, center all creatures in the middle of the tile
      */

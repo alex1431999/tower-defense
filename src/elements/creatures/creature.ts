@@ -115,7 +115,7 @@ export abstract class ElementCreature extends GameElement {
         const Y_OFFSET = 3
 
         const availableSpace = this.width
-        const healthPointsRemaining = this.maxHealthPoints / this.healthPoints
+        const healthPointsRemaining = this.healthPoints / this.maxHealthPoints
         const healthBarSize = availableSpace * healthPointsRemaining
 
         this.context.lineWidth = 3

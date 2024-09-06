@@ -23,6 +23,7 @@ export class GameElement {
     }
 
     public get canvasPosition(): ElementPosition {
+        // TODO get rid of offset and use positionToCanvasPosition instead
         return {x: this.position.x * this.offset.x, y: this.position.y * this.offset.y}
     }
 

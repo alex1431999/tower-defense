@@ -1,6 +1,7 @@
 import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {ElementTile} from "../tiles/element.tile.js";
 import {ElementCreature} from "../creatures/creature.js";
+import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 
 export abstract class ElementTower extends GameElement {
     public abstract damage: number
@@ -10,6 +11,9 @@ export abstract class ElementTower extends GameElement {
 
     // Defines how often a tower can attack, they can attack every X frame
     public abstract attackSpeed: number
+
+    // The attack animation the tower does
+    public abstract attackAnimation: AnimationAttack
 
     public cooldown: number = 0
 
@@ -33,6 +37,10 @@ export abstract class ElementTower extends GameElement {
     }
 
     protected abstract doAttack(creatures: ElementCreature[]): boolean
+
+    protected doAttackAnimation(targetPosition: ElementPosition) {
+        this.attackAnimation.start(this.position, targetPosition)
+    }
 
 
     /**

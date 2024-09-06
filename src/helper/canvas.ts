@@ -1,5 +1,5 @@
 import {ElementPosition} from "../elements/element.js";
-import {ElementTile} from "../elements/tiles/element.tile";
+import {ElementTile} from "../elements/tiles/element.tile.js";
 
 export function positionToCanvasPosition(position: ElementPosition): ElementPosition {
     return {x: position.x * ElementTile.WIDTH, y: position.y * ElementTile.HEIGHT}

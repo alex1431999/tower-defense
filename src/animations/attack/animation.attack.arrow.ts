@@ -1,6 +1,6 @@
 import {ElementPosition} from "../../elements/element.js";
 import {AnimationAttack} from "./animation.attack.js";
-import {positionToCanvasPosition} from "../../helper/canvas.js";
+import {centerPositionInTile, positionToCanvasPosition} from "../../helper/canvas.js";
 
 export class AnimationAttackArrow extends AnimationAttack {
     public static ARROW_SIZE = 2
@@ -9,10 +9,12 @@ export class AnimationAttackArrow extends AnimationAttack {
         const startingPositionCanvas = positionToCanvasPosition(startingPosition)
         const targetPositionCanvas = positionToCanvasPosition(targetPosition)
 
-        // TODO center animation in start field and target field
+        const startingPositionCanvasCentered = centerPositionInTile(startingPositionCanvas, 1, 1)
+        const targetPositionCanvasCentered = centerPositionInTile(targetPositionCanvas, 1, 1)
+
         this.context.beginPath()
-        this.context.moveTo(startingPositionCanvas.x, startingPositionCanvas.y)
-        this.context.lineTo(targetPositionCanvas.x, targetPositionCanvas.y)
+        this.context.moveTo(startingPositionCanvasCentered.x, startingPositionCanvasCentered.y)
+        this.context.lineTo(targetPositionCanvasCentered.x, targetPositionCanvasCentered.y)
         this.context.stroke()
     }
 }

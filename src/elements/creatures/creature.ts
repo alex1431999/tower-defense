@@ -25,15 +25,9 @@ export abstract class ElementCreature extends GameElement {
         this.drawHealthBar()
     }
 
-    public move(mapLayout: MapLayout) {
-        const nextPosition = this.getNextPosition(mapLayout)
-
-        if (nextPosition === null) {
-            throw new Error(`There is no next position to move to from ${JSON.stringify(this.position)}`)
-        }
-
+    public move(position: ElementPosition) {
         this.positionPrevious = this.position
-        this.position = nextPosition
+        this.position = position
     }
 
     /**

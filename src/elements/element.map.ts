@@ -54,7 +54,7 @@ export class ElementMap extends GameElement {
                 const nextPosition = creature.getNextPosition(this.mapLayout)
 
                 if (nextPosition !== null) {
-                    creature.move(this.mapLayout)
+                    creature.move(nextPosition)
                 } else {
                     state.healthPoints -= 1
                     this.creatures.splice(index, 1)

@@ -1,4 +1,4 @@
-import {canvas} from "../canvas.js";
+import {canvas, CanvasPosition} from "../canvas.js";
 
 export type ElementPosition = { x: number, y: number }
 
@@ -22,7 +22,7 @@ export class GameElement {
         this.offset = config?.offset || {x: 1, y: 1}
     }
 
-    public get canvasPosition(): ElementPosition {
+    public get canvasPosition(): CanvasPosition {
         // TODO get rid of offset and use positionToCanvasPosition instead
         return {x: this.position.x * this.offset.x, y: this.position.y * this.offset.y}
     }

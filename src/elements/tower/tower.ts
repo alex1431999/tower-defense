@@ -1,7 +1,8 @@
 import {ElementConfig, ElementPosition, GameElement} from "../element.js";
-import {ElementTile} from "../tiles/element.tile.js";
 import {ElementCreature} from "../creatures/creature.js";
 import {AnimationAttack} from "../../animations/attack/animation.attack.js";
+import {CanvasPosition} from "../../canvas.js";
+import {centerPositionInField} from "../../helper/canvas.js";
 
 export abstract class ElementTower extends GameElement {
     public abstract damage: number
@@ -46,24 +47,12 @@ export abstract class ElementTower extends GameElement {
     /**
      * By default, center all towers in the middle of the tile
      */
-    public get canvasPosition()
-        :
-        ElementPosition {
+    public get canvasPosition(): CanvasPosition {
         const position = super.canvasPosition
-
-        position.x += (ElementTile.WIDTH - this.width) / 2
-        position.y += (ElementTile.HEIGHT - this.height) / 2
-
-        return position
+        return centerPositionInField(position, this.width, this.height)
     }
 
-    protected
-
-    getCreaturesInRange(creatures
-                        :
-                        ElementCreature[]
-    ):
-        ElementCreature[] {
+    protected getCreaturesInRange(creatures: ElementCreature[]): ElementCreature[] {
         return creatures.filter(creature => {
             const xDifference = Math.abs(creature.position.x - this.position.x)
             const yDifference = Math.abs(creature.position.y - this.position.y)

@@ -6,7 +6,7 @@ export function positionToCanvasPosition(position: ElementPosition): CanvasPosit
     return {x: position.x * ElementTile.WIDTH, y: position.y * ElementTile.HEIGHT}
 }
 
-export function centerPositionInField(position: CanvasPosition, width: number, height: number): CanvasPosition {
+export function centerPositionInTile(position: CanvasPosition, width: number, height: number): CanvasPosition {
     const x = position.x + (ElementTile.WIDTH - width) / 2
     const y = position.y + (ElementTile.HEIGHT - height) / 2
 

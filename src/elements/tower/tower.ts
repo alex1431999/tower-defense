@@ -2,7 +2,7 @@ import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {ElementCreature} from "../creatures/creature.js";
 import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 import {CanvasPosition} from "../../canvas.js";
-import {centerPositionInField} from "../../helper/canvas.js";
+import {centerPositionInTile} from "../../helper/canvas.js";
 
 export abstract class ElementTower extends GameElement {
     public abstract damage: number
@@ -49,7 +49,7 @@ export abstract class ElementTower extends GameElement {
      */
     public get canvasPosition(): CanvasPosition {
         const position = super.canvasPosition
-        return centerPositionInField(position, this.width, this.height)
+        return centerPositionInTile(position, this.width, this.height)
     }
 
     protected getCreaturesInRange(creatures: ElementCreature[]): ElementCreature[] {

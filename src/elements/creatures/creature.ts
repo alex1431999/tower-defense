@@ -1,6 +1,7 @@
 import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {MapLayout} from "../../maps/maps.types";
-import {ElementTile, TileIdentifier} from "../tiles/element.tile.js";
+import {TileIdentifier} from "../tiles/element.tile.js";
+import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number
@@ -64,8 +65,8 @@ export abstract class ElementCreature extends GameElement {
     public get canvasPosition(): ElementPosition {
         const position = super.canvasPosition
 
-        position.x += (ElementTile.WIDTH - this.width) / 2
-        position.y += (ElementTile.HEIGHT - this.height) / 2
+        position.x += (TILE_WIDTH - this.width) / 2
+        position.y += (TILE_HEIGHT - this.height) / 2
 
         return position
     }

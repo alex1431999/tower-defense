@@ -1,17 +1,14 @@
 import {canvas, CanvasPosition} from "../canvas.js";
+import {positionToCanvasPosition} from "../helper/canvas.js";
 
 export type ElementPosition = { x: number, y: number }
 
-export type ElementOffset = { x: number, y: number }
-
-export type ElementConfig = { position?: ElementPosition, offset?: ElementOffset }
+export type ElementConfig = { position?: ElementPosition }
 
 export class GameElement {
     public canvas: HTMLCanvasElement = canvas
 
     public position: ElementPosition
-
-    public offset: ElementOffset
 
     public get elements(): GameElement[] {
         return []
@@ -19,12 +16,10 @@ export class GameElement {
 
     constructor(config?: ElementConfig) {
         this.position = config?.position || {x: 0, y: 0}
-        this.offset = config?.offset || {x: 1, y: 1}
     }
 
     public get canvasPosition(): CanvasPosition {
-        // TODO get rid of offset and use positionToCanvasPosition instead
-        return {x: this.position.x * this.offset.x, y: this.position.y * this.offset.y}
+        return positionToCanvasPosition(this.position)
     }
 
     protected get context() {

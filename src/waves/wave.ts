@@ -7,15 +7,13 @@ export type WaveConfig = {
 export abstract class Wave {
     public abstract creatures: ElementCreature[]
 
-    public creaturesDeployed: ElementCreature[] = []
+    public abstract creaturesRemaining: ElementCreature[]
 
-    public creaturesRemaining: ElementCreature[]
+    public creaturesDeployed: ElementCreature[] = []
 
     public config: WaveConfig
 
-    constructor(config: WaveConfig) {
-        // @ts-ignore
-        this.creaturesRemaining = this.creatures
+    protected constructor(config: WaveConfig) {
         this.config = config
     }
 

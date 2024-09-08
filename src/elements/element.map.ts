@@ -1,13 +1,13 @@
 import {GameElement} from "./element.js";
 import {ElementTile} from "./tiles/element.tile.js";
 import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
-import {ElementCreatureNali} from "./creatures/creature.nali.js";
 import {ElementCreature} from "./creatures/creature.js";
 import {state} from "../state.js";
 import {ElementTower} from "./tower/tower.js";
 import {ElementTowerArrow} from "./tower/tower.arrow.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
+import {MapFirst} from "../maps/map.first.js";
 
 export class ElementMap extends GameElement {
     public map: GameMap
@@ -16,13 +16,10 @@ export class ElementMap extends GameElement {
 
     public towers: ElementTower[] = []
 
-    constructor(map: GameMap) {
+    constructor() {
         super();
-        this.map = map
-
-        // Add one test creature for now
-        const nali = new ElementCreatureNali({position: {x: 0, y: 1}})
-        this.creatures.push(nali)
+        this.map = new MapFirst({onDeployCreature: this.onDeployCreature.bind(this)})
+        this.map.start()
 
         // Add one test tower for now
         const testTower = new ElementTowerArrow({position: {x: 3, y: 2}})
@@ -45,8 +42,13 @@ export class ElementMap extends GameElement {
 
     public draw(frameCount: number) {
         this.moveCreatures(frameCount)
+        this.map.wave.onTurn(frameCount)
         super.draw(frameCount)
         this.letTowersAttack()
+    }
+
+    private onDeployCreature(creature: ElementCreature) {
+        this.creatures.push(creature)
     }
 
     private moveCreatures(frameCount: number) {

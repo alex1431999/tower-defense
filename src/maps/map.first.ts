@@ -1,7 +1,7 @@
 import {MapLayout} from "./maps.types.js";
 import {GameMap} from "./map.js";
-import {Wave} from "../waves/wave";
-import {WaveFirst1} from "../waves/maps/first/wave.first.1";
+import {Wave} from "../waves/wave.js";
+import {WaveFirst1} from "../waves/maps/first/wave.first.1.js";
 
 export class MapFirst extends GameMap {
     public layout: MapLayout = [

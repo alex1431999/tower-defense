@@ -41,8 +41,8 @@ export class ElementMap extends GameElement {
     }
 
     public draw(frameCount: number) {
-        this.moveCreatures(frameCount)
         this.map.wave.onTurn(frameCount)
+        this.moveCreatures(frameCount)
         super.draw(frameCount)
         this.letTowersAttack()
     }

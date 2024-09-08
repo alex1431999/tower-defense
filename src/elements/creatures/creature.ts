@@ -2,6 +2,7 @@ import {ElementConfig, ElementPosition, GameElement} from "../element.js";
 import {MapLayout} from "../../maps/maps.types";
 import {TileIdentifier} from "../tiles/element.tile.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
+import {GameMap} from "../../maps/map.js";
 
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number
@@ -34,7 +35,8 @@ export abstract class ElementCreature extends GameElement {
     /**
      *  If this function returns null we know we have reached the end of the the map
      */
-    public getNextPosition(mapLayout: MapLayout): ElementPosition | null {
+    public getNextPosition(map: GameMap): ElementPosition | null {
+        const mapLayout = map.layout
         const {x, y} = this.position
 
         const currentTile = mapLayout[y][x]

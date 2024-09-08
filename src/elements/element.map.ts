@@ -1,5 +1,4 @@
 import {GameElement} from "./element.js";
-import {MapLayout} from "../maps/maps.types.js";
 import {ElementTile} from "./tiles/element.tile.js";
 import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
 import {ElementCreatureNali} from "./creatures/creature.nali.js";
@@ -8,17 +7,18 @@ import {state} from "../state.js";
 import {ElementTower} from "./tower/tower.js";
 import {ElementTowerArrow} from "./tower/tower.arrow.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
+import {GameMap} from "../maps/map.js";
 
 export class ElementMap extends GameElement {
-    public mapLayout: MapLayout
+    public map: GameMap
 
     public creatures: ElementCreature[] = []
 
     public towers: ElementTower[] = []
 
-    constructor(mapLayout: MapLayout) {
+    constructor(map: GameMap) {
         super();
-        this.mapLayout = mapLayout
+        this.map = map
 
         // Add one test creature for now
         const nali = new ElementCreatureNali({position: {x: 0, y: 1}})
@@ -35,12 +35,12 @@ export class ElementMap extends GameElement {
 
     public get width() {
         // We assume that each row has the same length
-        const firstRow = this.mapLayout[0]
+        const firstRow = this.map.layout[0]
         return firstRow.length * TILE_WIDTH
     }
 
     public get height() {
-        return this.mapLayout.length * TILE_HEIGHT
+        return this.map.layout.length * TILE_HEIGHT
     }
 
     public draw(frameCount: number) {
@@ -52,7 +52,7 @@ export class ElementMap extends GameElement {
     private moveCreatures(frameCount: number) {
         this.creatures.forEach((creature, index) => {
             if (frameCount % (1 / creature.speed) === 0) {
-                const nextPosition = creature.getNextPosition(this.mapLayout)
+                const nextPosition = creature.getNextPosition(this.map)
 
                 if (nextPosition !== null) {
                     creature.move(nextPosition)
@@ -78,8 +78,8 @@ export class ElementMap extends GameElement {
     private generateTiles(): ElementTile[] {
         const tiles = []
 
-        for (let y = 0; y < this.mapLayout.length; y += 1) {
-            const row = this.mapLayout[y]
+        for (let y = 0; y < this.map.layout.length; y += 1) {
+            const row = this.map.layout[y]
 
             for (let x = 0; x < row.length; x += 1) {
                 const identifier = row[x]

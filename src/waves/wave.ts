@@ -1,4 +1,4 @@
-import {ElementCreature} from "../elements/creatures/creature";
+import {ElementCreature} from "../elements/creatures/creature.js";
 
 export type WaveConfig = {
     onDeployCreature: (creature: ElementCreature) => void

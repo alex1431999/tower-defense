@@ -1,11 +1,11 @@
 import {ElementMap} from "./elements/element.map.js";
 import {GameElement} from "./elements/element.js";
-import {MAP_FIRST} from "./maps/map.first.js";
+import {MapFirst} from "./maps/map.first.js";
 
 export class Engine {
     public canvas: HTMLCanvasElement
 
-    public elementMap: ElementMap = new ElementMap(MAP_FIRST)
+    public elementMap: ElementMap = new ElementMap(new MapFirst())
 
     public frameCount = 0
 

@@ -9,7 +9,7 @@ export type GameMapConfig = {
 export abstract class GameMap {
     public abstract layout: MapLayout
 
-    public abstract get waves(): Wave[]
+    public abstract waves: Wave[]
 
     public waveCount = 0
 

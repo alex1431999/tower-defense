@@ -9,6 +9,6 @@ export class WaveFirst1 extends Wave {
 
     constructor(config: WaveConfig) {
         super(config);
-        this.creaturesRemaining = this.creatures
+        this.creaturesRemaining = [...this.creatures]
     }
 }

@@ -30,7 +30,7 @@ export abstract class Wave {
     }
 
     protected deployCreature(index: number) {
-        const [creature] = this.creaturesRemaining.slice(index, 1)
+        const [creature] = this.creaturesRemaining.splice(index, 1)
         this.config.onDeployCreature(creature)
         this.creaturesDeployed.push(creature)
     }

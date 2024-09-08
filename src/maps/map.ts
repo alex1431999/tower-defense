@@ -11,9 +11,23 @@ export abstract class GameMap {
 
     public abstract get waves(): Wave[]
 
+    public waveCount = 0
+
     public config: GameMapConfig
 
     constructor(config: GameMapConfig) {
         this.config = config
+    }
+
+    public start() {
+        this.waveCount = 0
+    }
+
+    public get wave() {
+        return this.waves[this.waveCount]
+    }
+
+    public get finished() {
+        return this.waveCount >= this.waves.length
     }
 }

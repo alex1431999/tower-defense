@@ -26,6 +26,7 @@ export class State {
 
     public set gameState(gameState: GameState) {
         this._gameState = gameState
+        this.gameStatusParagraph.innerText = `Status: ${gameState}`
     }
 
     public pauseBetweenWaves(delay = 2000) {
@@ -38,6 +39,10 @@ export class State {
 
     private get healthPointsParagraph(): HTMLParagraphElement {
         return document.getElementById('healthPoints') as HTMLParagraphElement
+    }
+
+    private get gameStatusParagraph(): HTMLParagraphElement {
+        return document.getElementById('gameStatus') as HTMLParagraphElement
     }
 }
 

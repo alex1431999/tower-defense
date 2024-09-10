@@ -11,6 +11,8 @@ export abstract class ElementCreature extends GameElement {
 
     public speed: number = 1
 
+    public currencyReward: number
+
     public positionPrevious: ElementPosition
 
     public width = 25

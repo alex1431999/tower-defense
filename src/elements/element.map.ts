@@ -97,8 +97,15 @@ export class ElementMap extends GameElement {
     private letTowersAttack() {
         this.towers.forEach(tower => {
             tower.attack(this.creatures)
+            
+            this.applyCurrencyReward()
             this.removeDeadCreatures()
         })
+    }
+
+    private applyCurrencyReward() {
+        const creaturesKilled = this.creatures.filter(creature => creature.healthPoints <= 0)
+        creaturesKilled.forEach(creature => state.addToBalance(creature.currencyReward))
     }
 
     private removeDeadCreatures() {

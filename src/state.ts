@@ -41,6 +41,10 @@ export class State {
         this.balanceParagraph.innerText = `Balance: $${balance}`
     }
 
+    public addToBalance(amount: number) {
+        this.balance += amount
+    }
+
 
     public pauseBetweenWaves(delay = 2000) {
         this.gameState = 'inBetweenWaves'

@@ -5,6 +5,8 @@ export class ElementCreatureNali extends ElementCreature {
 
     public maxHealthPoints: number = 3
 
+    public currencyReward: number = 5
+
     public draw(frameCount: number) {
         super.draw(frameCount);
 

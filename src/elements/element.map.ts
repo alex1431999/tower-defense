@@ -9,12 +9,17 @@ import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
 import {MapFirst} from "../maps/map.first.js";
 
+// The delay between a wave finising and the next one starting
+const WAVE_DELAY = 2000 // 2 seconds
+
 export class ElementMap extends GameElement {
     public map: GameMap
 
     public creatures: ElementCreature[] = []
 
     public towers: ElementTower[] = []
+
+    public isPaused: boolean = false
 
     constructor() {
         super();
@@ -41,14 +46,33 @@ export class ElementMap extends GameElement {
     }
 
     public draw(frameCount: number) {
-        this.map.wave.onTurn(frameCount)
-        this.moveCreatures(frameCount)
+        if (this.hasWaveFinished) {
+            this.deployNextWave()
+        }
+
+        if (!this.isPaused) {
+            this.map.wave.onTurn(frameCount)
+            this.moveCreatures(frameCount)
+        }
+        
         super.draw(frameCount)
         this.letTowersAttack()
     }
 
+    private get hasWaveFinished() {
+        return this.creatures.length === 0 && this.map.wave.hasDeployedAllCreatures
+    }
+
     private onDeployCreature(creature: ElementCreature) {
         this.creatures.push(creature)
+    }
+
+    private deployNextWave() {
+        this.map.nextWave()
+        this.isPaused = true
+        setTimeout(() => {
+            this.isPaused = false
+        }, WAVE_DELAY)
     }
 
     private moveCreatures(frameCount: number) {

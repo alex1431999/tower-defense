@@ -25,7 +25,7 @@ export abstract class Wave {
         }
     }
 
-    public hasDeployedAllCreatures(): boolean {
+    public get hasDeployedAllCreatures(): boolean {
         return this.creaturesRemaining.length === 0
     }
 

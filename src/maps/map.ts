@@ -15,12 +15,16 @@ export abstract class GameMap {
 
     public config: GameMapConfig
 
-    constructor(config: GameMapConfig) {
+    protected constructor(config: GameMapConfig) {
         this.config = config
     }
 
     public start() {
         this.waveCount = 0
+    }
+
+    public nextWave() {
+        this.waveCount += 1
     }
 
     public get wave() {

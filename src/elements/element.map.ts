@@ -19,12 +19,13 @@ export class ElementMap extends GameElement {
 
     public towers: ElementTower[] = []
 
-    public isPaused: boolean = false
-
     constructor() {
         super();
+        
         this.map = new MapFirst({onDeployCreature: this.onDeployCreature.bind(this)})
         this.map.start()
+
+        state.gameState = 'active'
 
         // Add one test tower for now
         const testTower = new ElementTowerArrow({position: {x: 3, y: 2}})
@@ -50,11 +51,11 @@ export class ElementMap extends GameElement {
             this.deployNextWave()
         }
 
-        if (!this.isPaused) {
+        if (state.gameState === 'active') {
             this.map.wave.onTurn(frameCount)
             this.moveCreatures(frameCount)
         }
-        
+
         super.draw(frameCount)
         this.letTowersAttack()
     }
@@ -69,9 +70,11 @@ export class ElementMap extends GameElement {
 
     private deployNextWave() {
         this.map.nextWave()
-        this.isPaused = true
+
+        state.gameState = 'inBetweenWaves'
+
         setTimeout(() => {
-            this.isPaused = false
+            state.gameState = 'active'
         }, WAVE_DELAY)
     }
 

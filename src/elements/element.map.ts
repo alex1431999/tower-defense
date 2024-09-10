@@ -44,6 +44,11 @@ export class ElementMap extends GameElement {
     }
 
     public draw(frameCount: number) {
+        if (this.hasGameFinished) {
+            state.gameState = 'finished'
+            return
+        }
+
         if (this.hasWaveFinished) {
             this.deployNextWave()
         }
@@ -59,6 +64,10 @@ export class ElementMap extends GameElement {
 
     private get hasWaveFinished() {
         return this.creatures.length === 0 && this.map.wave.hasDeployedAllCreatures
+    }
+
+    private get hasGameFinished() {
+        return this.creatures.length === 0 && this.map.finished
     }
 
     private onDeployCreature(creature: ElementCreature) {

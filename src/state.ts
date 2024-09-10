@@ -1,6 +1,6 @@
 export type StateConfig = { healthPoints: number }
 
-export type GameState = 'active' | 'inBetweenWaves'
+export type GameState = 'active' | 'inBetweenWaves' | 'finished'
 
 export class State {
     private _healthPoints: number

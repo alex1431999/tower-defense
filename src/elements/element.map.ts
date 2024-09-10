@@ -9,9 +9,6 @@ import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
 import {MapFirst} from "../maps/map.first.js";
 
-// The delay between a wave finising and the next one starting
-const WAVE_DELAY = 2000 // 2 seconds
-
 export class ElementMap extends GameElement {
     public map: GameMap
 
@@ -21,7 +18,7 @@ export class ElementMap extends GameElement {
 
     constructor() {
         super();
-        
+
         this.map = new MapFirst({onDeployCreature: this.onDeployCreature.bind(this)})
         this.map.start()
 
@@ -70,12 +67,7 @@ export class ElementMap extends GameElement {
 
     private deployNextWave() {
         this.map.nextWave()
-
-        state.gameState = 'inBetweenWaves'
-
-        setTimeout(() => {
-            state.gameState = 'active'
-        }, WAVE_DELAY)
+        state.pauseBetweenWaves()
     }
 
     private moveCreatures(frameCount: number) {

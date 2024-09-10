@@ -28,6 +28,14 @@ export class State {
         this._gameState = gameState
     }
 
+    public pauseBetweenWaves(delay = 2000) {
+        this.gameState = 'inBetweenWaves'
+
+        setTimeout(() => {
+            this.gameState = 'active'
+        }, delay)
+    }
+
     private get healthPointsParagraph(): HTMLParagraphElement {
         return document.getElementById('healthPoints') as HTMLParagraphElement
     }

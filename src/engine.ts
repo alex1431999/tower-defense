@@ -22,16 +22,19 @@ export class Engine {
         state.gameState = 'loading'
 
         await this.loadAssets()
-
-        this.canvas.width = this.elementMap.width
-        this.canvas.height = this.elementMap.height
-        this.canvas.style.background = 'black'
+        this.loadCanvas()
 
         state.gameState = 'active'
     }
 
     public draw() {
         this.elements.forEach(element => element.draw(this.frameCount))
+    }
+
+    protected loadCanvas() {
+        this.canvas.width = this.elementMap.width
+        this.canvas.height = this.elementMap.height
+        this.canvas.style.background = 'black'
     }
 
     protected async loadAssets() {

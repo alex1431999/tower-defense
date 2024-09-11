@@ -54,16 +54,20 @@ export class State {
         }, delay)
     }
 
+    private get shadowRoot() {
+        return document.getElementById('state').shadowRoot
+    }
+
     private get healthPointsParagraph(): HTMLParagraphElement {
-        return document.getElementById('healthPoints') as HTMLParagraphElement
+        return this.shadowRoot.getElementById('healthPoints') as HTMLParagraphElement
     }
 
     private get gameStatusParagraph(): HTMLParagraphElement {
-        return document.getElementById('gameStatus') as HTMLParagraphElement
+        return this.shadowRoot.getElementById('gameStatus') as HTMLParagraphElement
     }
 
     private get balanceParagraph(): HTMLParagraphElement {
-        return document.getElementById('balance') as HTMLParagraphElement
+        return this.shadowRoot.getElementById('balance') as HTMLParagraphElement
     }
 }
 

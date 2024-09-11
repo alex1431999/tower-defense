@@ -1,3 +1,4 @@
+import './components/index.js'
 import {canvas} from "./canvas.js";
 import {Engine} from "./engine.js";
 

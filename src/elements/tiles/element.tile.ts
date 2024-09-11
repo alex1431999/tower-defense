@@ -1,12 +1,12 @@
-import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 import {ElementPosition, GameElement} from "../element.js";
+import {Sprite} from "../../assets/sprites/sprite.js";
 
 export type TileIdentifier = 'pa' | 'pl'
 
 export type TileConfig = { position: ElementPosition }
 
 export abstract class ElementTile extends GameElement {
-    protected abstract color: string
+    protected abstract sprite: Sprite
 
     protected abstract identifier: TileIdentifier
 
@@ -17,7 +17,6 @@ export abstract class ElementTile extends GameElement {
     public draw(frameCount: number) {
         super.draw(frameCount);
 
-        this.context.fillStyle = this.color
-        this.context.fillRect(this.canvasPosition.x, this.canvasPosition.y, TILE_HEIGHT, TILE_WIDTH)
+        this.context.drawImage(this.sprite.image, this.canvasPosition.x, this.canvasPosition.y)
     }
 }

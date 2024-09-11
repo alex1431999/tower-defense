@@ -1,8 +1,12 @@
 import {ElementCreature} from "../creatures/creature.js";
-import {ElementTower} from "./tower.js";
+import {ElementTower, ElementTowerName} from "./tower.js";
 import {AnimationAttackArrow} from "../../animations/attack/animation.attack.arrow.js";
 
 export class ElementTowerArrow extends ElementTower {
+    public name: ElementTowerName = 'arrow'
+
+    public price = 100
+
     public damage = 1
 
     public range = 2

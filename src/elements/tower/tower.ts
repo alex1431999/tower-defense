@@ -4,7 +4,13 @@ import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 import {CanvasPosition} from "../../canvas.js";
 import {centerPositionInTile} from "../../helper/canvas.js";
 
+export type ElementTowerName = 'arrow'
+
 export abstract class ElementTower extends GameElement {
+    public abstract name: ElementTowerName
+
+    public abstract price: number
+
     public abstract damage: number
 
     // Any field that is within this range can be attacked by this tower
@@ -22,7 +28,7 @@ export abstract class ElementTower extends GameElement {
 
     public width: number = 25
 
-    constructor(config: ElementConfig) {
+    constructor(config?: ElementConfig) {
         super(config)
     }
 

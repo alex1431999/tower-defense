@@ -6,7 +6,7 @@ export abstract class Sprite {
     public async load() {
         this.image = await new Promise(resolve => {
             const image = new Image();
-            const url = `/assets/sprites/${this.fileName}`
+            const url = `/public/assets/sprites/${this.fileName}`
 
             image.onload = (() => resolve(image));
             image.src = url;

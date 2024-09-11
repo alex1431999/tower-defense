@@ -3,10 +3,10 @@ import {Engine} from "./engine.js";
 
 const REFRESH_INTERVAL = 500 // Every X ms we call draw and rerender all elements
 
-function main() {
+async function main() {
     const engine = new Engine(canvas)
 
-    engine.setup()
+    await engine.setup()
 
     setInterval(() => {
         engine.draw()

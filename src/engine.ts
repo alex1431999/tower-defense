@@ -16,7 +16,7 @@ export class Engine {
         return [this.elementMap]
     }
 
-    public setup() {
+    public async setup() {
         this.canvas.width = this.elementMap.width
         this.canvas.height = this.elementMap.height
         this.canvas.style.background = 'black'

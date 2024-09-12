@@ -1,3 +1,5 @@
+import {ElementTower} from "./elements/tower/tower.js";
+
 export type StateConfig = { healthPoints: number, startingBalance: number }
 
 export type GameState = 'active' | 'inBetweenWaves' | 'finished' | 'loading'
@@ -8,6 +10,8 @@ export class State {
     private _gameState: GameState
 
     private _balance: number
+
+    private _towerForPurchaseSelected: ElementTower | null = null
 
     constructor(config: StateConfig) {
         this.healthPoints = config.healthPoints
@@ -20,7 +24,7 @@ export class State {
 
     public set healthPoints(healthPoints: number) {
         this._healthPoints = healthPoints
-        this.healthPointsParagraph.innerText = `HP: ${healthPoints}`
+        this.safeDomUpdate<HTMLParagraphElement>('healthPoints', (element) => element.innerText = `HP: ${healthPoints}`)
     }
 
     public get gameState() {
@@ -29,7 +33,8 @@ export class State {
 
     public set gameState(gameState: GameState) {
         this._gameState = gameState
-        this.gameStatusParagraph.innerText = `Status: ${gameState}`
+        this.safeDomUpdate<HTMLParagraphElement>('gameStatus', (element) => element.innerText = `Status: ${gameState}`)
+
     }
 
     public get balance() {
@@ -38,7 +43,15 @@ export class State {
 
     public set balance(balance: number) {
         this._balance = balance
-        this.balanceParagraph.innerText = `Balance: $${balance}`
+        this.safeDomUpdate<HTMLParagraphElement>('balance', (element) => element.innerText = `Balance: $${balance}`)
+    }
+
+    public get towerForPurchaseSelected() {
+        return this._towerForPurchaseSelected
+    }
+
+    public set towerForPurchaseSelected(towerSelected: ElementTower) {
+        this._towerForPurchaseSelected = towerSelected
     }
 
     public addToBalance(amount: number) {
@@ -54,20 +67,23 @@ export class State {
         }, delay)
     }
 
+    private safeDomUpdate<T extends HTMLElement>(id: string, update: (element: T) => void) {
+        const element = this.domGet<T>(id)
+
+        if (element === null) {
+            setTimeout(() => this.safeDomUpdate(id, update), 100)
+        } else {
+            update(element)
+        }
+    }
+
+    private domGet<T extends HTMLElement>(id: string): T | null {
+        const element = this.shadowRoot?.getElementById(id)
+        return element as T || null
+    }
+
     private get shadowRoot() {
         return document.getElementById('state').shadowRoot
-    }
-
-    private get healthPointsParagraph(): HTMLParagraphElement {
-        return this.shadowRoot.getElementById('healthPoints') as HTMLParagraphElement
-    }
-
-    private get gameStatusParagraph(): HTMLParagraphElement {
-        return this.shadowRoot.getElementById('gameStatus') as HTMLParagraphElement
-    }
-
-    private get balanceParagraph(): HTMLParagraphElement {
-        return this.shadowRoot.getElementById('balance') as HTMLParagraphElement
     }
 }
 

@@ -1,5 +1,6 @@
 import {ALL_TOWERS, ALL_TOWERS_MAP} from "../elements/tower/tower.constants.js";
 import {ElementTower, ElementTowerName} from "../elements/tower/tower.js";
+import {state} from "../state.js";
 
 export class ComponentTowerSelector extends HTMLElement {
     constructor() {
@@ -37,6 +38,9 @@ export class ComponentSelectableTower extends HTMLElement {
     private get towerButton() {
         const button = document.createElement('button')
         button.textContent = `${this.tower.name} - $${this.tower.price}`
+        button.onclick = () => {
+            state.towerForPurchaseSelected = this.tower
+        }
 
         return button
     }

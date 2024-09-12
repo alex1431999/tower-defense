@@ -1,4 +1,4 @@
-import {GameElement} from "./element.js";
+import {ElementPosition, GameElement} from "./element.js";
 import {ElementTile} from "./tiles/element.tile.js";
 import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
 import {ElementCreature} from "./creatures/creature.js";
@@ -8,6 +8,9 @@ import {ElementTowerArrow} from "./tower/tower.arrow.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
 import {MapFirst} from "../maps/map.first.js";
+import {canvasPositionToPosition} from "../helper/canvas.js";
+import {ElementTilePath} from "./tiles/element.tile.path";
+import {ElementTilePlot} from "./tiles/element.tile.plot";
 
 export class ElementMap extends GameElement {
     public map: GameMap
@@ -16,13 +19,19 @@ export class ElementMap extends GameElement {
 
     public towers: ElementTower[] = []
 
+    public tiles: ElementTile[]
+
     constructor() {
         super();
 
         this.map = new MapFirst({onDeployCreature: this.onDeployCreature.bind(this)})
         this.map.start()
 
+        this.tiles = this.generateTiles()
+
         state.gameState = 'active'
+
+        this.canvas.onclick = this.onClick.bind(this)
 
         // Add one test tower for now
         const testTower = new ElementTowerArrow({position: {x: 3, y: 2}})
@@ -30,7 +39,7 @@ export class ElementMap extends GameElement {
     }
 
     public get elements(): GameElement[] {
-        return [...this.generateTiles(), ...this.creatures, ...this.towers]
+        return [...this.tiles, ...this.creatures, ...this.towers]
     }
 
     public get width() {
@@ -60,6 +69,35 @@ export class ElementMap extends GameElement {
 
         super.draw(frameCount)
         this.letTowersAttack()
+    }
+
+    private onClick(event: PointerEvent) {
+        const x = event.offsetX
+        const y = event.offsetY
+
+        const position = canvasPositionToPosition({x, y})
+        const tile = this.getTile(position)
+
+        switch (tile.identifier) {
+            case "pa":
+                return this.onClickPath(tile as ElementTilePath)
+            case "pl":
+                return this.onClickPlot(tile as ElementTilePlot)
+            default:
+                throw new Error('The tile identifier cant hanlde an on click')
+        }
+    }
+
+    private onClickPath(tile: ElementTilePath) {
+        // TODO
+    }
+
+    private onClickPlot(tile: ElementTilePlot) {
+        console.log(tile)
+    }
+
+    private getTile(position: ElementPosition) {
+        return this.tiles.find(tile => tile.position.x === position.x && tile.position.y === position.y)
     }
 
     private get hasWaveFinished() {
@@ -97,7 +135,7 @@ export class ElementMap extends GameElement {
     private letTowersAttack() {
         this.towers.forEach(tower => {
             tower.attack(this.creatures)
-            
+
             this.applyCurrencyReward()
             this.removeDeadCreatures()
         })

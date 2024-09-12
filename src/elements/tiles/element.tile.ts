@@ -8,7 +8,7 @@ export type TileConfig = { position: ElementPosition }
 export abstract class ElementTile extends GameElement {
     protected abstract sprite: Sprite
 
-    protected abstract identifier: TileIdentifier
+    public abstract identifier: TileIdentifier
 
     constructor(config: TileConfig) {
         super(config);

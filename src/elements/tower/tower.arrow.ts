@@ -1,9 +1,13 @@
 import {ElementCreature} from "../creatures/creature.js";
 import {ElementTower, ElementTowerName} from "./tower.js";
 import {AnimationAttackArrow} from "../../animations/attack/animation.attack.arrow.js";
+import {spriteTowerArrow} from "../../assets/sprites/tower/sprite.tower.arrow.js";
+import {Sprite} from "../../assets/sprites/sprite.js";
 
 export class ElementTowerArrow extends ElementTower {
     public name: ElementTowerName = 'arrow'
+
+    protected sprite: Sprite = spriteTowerArrow
 
     public price = 100
 
@@ -30,12 +34,5 @@ export class ElementTowerArrow extends ElementTower {
         firstCreature.takeDamage(this.damage)
 
         return true
-    }
-
-    public draw(frameCount: number) {
-        super.draw(frameCount);
-
-        this.context.fillStyle = 'red'
-        this.context.fillRect(this.canvasPosition.x, this.canvasPosition.y, this.width, this.height)
     }
 }

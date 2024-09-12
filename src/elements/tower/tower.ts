@@ -3,11 +3,14 @@ import {ElementCreature} from "../creatures/creature.js";
 import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 import {CanvasPosition} from "../../canvas.js";
 import {centerPositionInTile} from "../../helper/canvas.js";
+import {Sprite} from "../../assets/sprites/sprite.js";
 
 export type ElementTowerName = 'arrow'
 
 export abstract class ElementTower extends GameElement {
     public abstract name: ElementTowerName
+
+    protected abstract sprite: Sprite
 
     public abstract price: number
 
@@ -30,6 +33,12 @@ export abstract class ElementTower extends GameElement {
 
     constructor(config?: ElementConfig) {
         super(config)
+    }
+
+    public draw(frameCount: number) {
+        super.draw(frameCount);
+
+        this.context.drawImage(this.sprite.image, this.canvasPosition.x, this.canvasPosition.y)
     }
 
     public attack(creatures: ElementCreature[]): void {

@@ -1,22 +1,33 @@
-<div style=" display: flex; justify-content: space-between">
-    <canvas id="canvas"></canvas>
-    <div>
-        <div class="card">
-            <div class="card__content">
-                <tower-selector></tower-selector>
+<head>
+    <title>Tower defense</title>
+    <link href='https://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet'>
+</head>
+<body>
+    <div style=" display: flex; justify-content: space-between">
+        <canvas id="canvas"></canvas>
+        <div>
+            <div class="card">
+                <div class="card__content">
+                    <tower-selector></tower-selector>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card__content">
-                <game-state id="state"/>
+            <div class="card">
+                <div class="card__content">
+                    <game-state id="state"/>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 
 <script type="module" src="./dist/index.js"></script>
 
 <style>
+    body {
+        font-family: 'MedievalSharp';
+        font-size: 22px;
+    }
+
     .card {
         display: flex;
         padding: 10px;

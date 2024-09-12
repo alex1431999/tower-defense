@@ -9,8 +9,9 @@ import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
 import {MapFirst} from "../maps/map.first.js";
 import {canvasPositionToPosition} from "../helper/canvas.js";
-import {ElementTilePath} from "./tiles/element.tile.path";
-import {ElementTilePlot} from "./tiles/element.tile.plot";
+import {ElementTilePath} from "./tiles/element.tile.path.js";
+import {ElementTilePlot} from "./tiles/element.tile.plot.js";
+import {ALL_TOWER_CLASSES_MAP} from "./tower/tower.constants.js";
 
 export class ElementMap extends GameElement {
     public map: GameMap
@@ -93,7 +94,20 @@ export class ElementMap extends GameElement {
     }
 
     private onClickPlot(tile: ElementTilePlot) {
-        console.log(tile)
+        if (state.towerForPurchaseSelected) {
+            this.purchaseTower(tile)
+        }
+    }
+
+    private purchaseTower(tile: ElementTilePlot) {
+        const towerName = state.towerForPurchaseSelected
+        const TowerClass = ALL_TOWER_CLASSES_MAP[towerName]
+
+        const tower = new TowerClass({position: tile.position})
+
+        this.towers.push(tower)
+
+        state.towerForPurchaseSelected = null
     }
 
     private getTile(position: ElementPosition) {

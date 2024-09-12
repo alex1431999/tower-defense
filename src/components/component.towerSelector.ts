@@ -39,7 +39,7 @@ export class ComponentSelectableTower extends HTMLElement {
         const button = document.createElement('button')
         button.textContent = `${this.tower.name} - $${this.tower.price}`
         button.onclick = () => {
-            state.towerForPurchaseSelected = this.tower
+            state.towerForPurchaseSelected = this.tower.name
         }
 
         return button

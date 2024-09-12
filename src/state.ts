@@ -1,4 +1,4 @@
-import {ElementTower} from "./elements/tower/tower.js";
+import {ElementTower, ElementTowerName} from "./elements/tower/tower.js";
 
 export type StateConfig = { healthPoints: number, startingBalance: number }
 
@@ -11,7 +11,7 @@ export class State {
 
     private _balance: number
 
-    private _towerForPurchaseSelected: ElementTower | null = null
+    private _towerForPurchaseSelected: ElementTowerName | null = null
 
     constructor(config: StateConfig) {
         this.healthPoints = config.healthPoints
@@ -50,7 +50,7 @@ export class State {
         return this._towerForPurchaseSelected
     }
 
-    public set towerForPurchaseSelected(towerSelected: ElementTower) {
+    public set towerForPurchaseSelected(towerSelected: ElementTowerName) {
         this._towerForPurchaseSelected = towerSelected
     }
 

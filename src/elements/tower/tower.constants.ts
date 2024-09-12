@@ -7,3 +7,9 @@ export const ALL_TOWERS_MAP: Record<ElementTowerName, ElementTower> = {
 }
 
 export const ALL_TOWERS = Object.values(ALL_TOWERS_MAP)
+
+export const ALL_TOWER_CLASSES_MAP = {
+    arrow: ElementTowerArrow
+}
+
+export const ALL_TOWER_CLASSES = Object.values(ALL_TOWER_CLASSES_MAP)

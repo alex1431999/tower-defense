@@ -33,10 +33,6 @@ export class ElementMap extends GameElement {
         state.gameState = 'active'
 
         this.canvas.onclick = this.onClick.bind(this)
-
-        // Add one test tower for now
-        const testTower = new ElementTowerArrow({position: {x: 3, y: 2}})
-        this.towers.push(testTower)
     }
 
     public get elements(): GameElement[] {

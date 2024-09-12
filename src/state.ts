@@ -34,8 +34,6 @@ export class State {
 
     public set gameState(gameState: GameState) {
         this._gameState = gameState
-        this.safeDomUpdate<HTMLParagraphElement>('gameStatus', (element) => element.innerText = `Status: ${gameState}`)
-
     }
 
     public get balance() {

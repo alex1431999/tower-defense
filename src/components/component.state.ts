@@ -4,32 +4,24 @@ export class ComponentState extends HTMLElement {
 
         const shadow = this.attachShadow({mode: 'open'})
 
-        shadow.appendChild(this.gameStatusParagraph)
-        shadow.appendChild(this.healthPointsParagraph)
-        shadow.appendChild(this.balanceParagraph)
+        shadow.appendChild(this.healthPointsHTMLElement)
+        shadow.appendChild(this.balanceHTMLElement)
     }
 
-    private get gameStatusParagraph() {
-        const paragraph = document.createElement('p')
-        paragraph.id = 'gameStatus'
-        paragraph.textContent = ''
+    private get healthPointsHTMLElement() {
+        const div = document.createElement('div')
+        div.id = 'healthPoints'
+        div.style.marginBottom = '5px'
+        div.textContent = ''
 
-        return paragraph
+        return div
     }
 
-    private get healthPointsParagraph() {
-        const paragraph = document.createElement('p')
-        paragraph.id = 'healthPoints'
-        paragraph.textContent = ''
+    private get balanceHTMLElement() {
+        const div = document.createElement('div')
+        div.id = 'balance'
+        div.textContent = ''
 
-        return paragraph
-    }
-
-    private get balanceParagraph() {
-        const paragraph = document.createElement('p')
-        paragraph.id = 'balance'
-        paragraph.textContent = ''
-
-        return paragraph
+        return div
     }
 }

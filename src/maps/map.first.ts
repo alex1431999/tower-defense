@@ -6,14 +6,21 @@ import {WaveFirst2} from "../waves/maps/first/wave.first.2.js";
 
 export class MapFirst extends GameMap {
     public layout: MapLayout = [
-        ['pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
-        ['pa', 'pa', 'pa', 'pa', 'pa', 'pl'],
-        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl'],
-        ['pl', 'pl', 'pa', 'pa', 'pa', 'pl'],
-        ['pl', 'pl', 'pa', 'pl', 'pl', 'pl'],
-        ['pl', 'pl', 'pa', 'pa', 'pa', 'pl'],
-        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl'],
-        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pa', 'pa', 'pa', 'pa', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pa', 'pa', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pa', 'pa', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
+        ['pl', 'pl', 'pl', 'pl', 'pa', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl', 'pl'],
     ]
 
     public waves: Wave[]

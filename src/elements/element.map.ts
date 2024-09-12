@@ -101,6 +101,8 @@ export class ElementMap extends GameElement {
 
         const tower = new TowerClass({position: tile.position})
 
+        state.balance -= tower.price
+
         this.towers.push(tower)
 
         state.towerForPurchaseSelected = null

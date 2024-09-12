@@ -42,6 +42,10 @@ export class State {
     }
 
     public set balance(balance: number) {
+        if (balance < 0) {
+            throw new Error('Balance cant be negative')
+        }
+
         this._balance = balance
         this.safeDomUpdate<HTMLParagraphElement>('balance', (element) => element.innerText = `Balance: $${balance}`)
     }

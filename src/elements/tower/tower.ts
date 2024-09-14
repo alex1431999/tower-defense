@@ -4,6 +4,7 @@ import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 import {CanvasPosition} from "../../canvas.js";
 import {centerPositionInTile} from "../../helper/canvas.js";
 import {Sprite} from "../../assets/sprites/sprite.js";
+import {FRAMES_PER_SECOND} from "../../rendering.constants.js";
 
 export type ElementTowerName = 'arrow'
 
@@ -35,6 +36,11 @@ export abstract class ElementTower extends GameElement {
         super(config)
     }
 
+    public get attackSpeedNoramlised() {
+        return this.attackSpeed * FRAMES_PER_SECOND
+    }
+
+
     public draw(frameCount: number) {
         super.draw(frameCount);
 
@@ -47,7 +53,7 @@ export abstract class ElementTower extends GameElement {
         if (this.cooldown <= 0) {
             const hasAttacked = this.doAttack(creatures)
             if (hasAttacked) {
-                this.cooldown = this.attackSpeed
+                this.cooldown = this.attackSpeedNoramlised
             }
         }
     }

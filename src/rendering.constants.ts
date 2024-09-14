@@ -1,0 +1,3 @@
+export const FRAMES_PER_SECOND = 60
+
+export const REFRESH_INTERVAL = 1000 / FRAMES_PER_SECOND

@@ -4,7 +4,6 @@ import {TILE_CLASSES_MAP} from "./tiles/element.tile.constants.js";
 import {ElementCreature} from "./creatures/creature.js";
 import {state} from "../state.js";
 import {ElementTower} from "./tower/tower.js";
-import {ElementTowerArrow} from "./tower/tower.arrow.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../helper/canvas.constants.js";
 import {GameMap} from "../maps/map.js";
 import {MapFirst} from "../maps/map.first.js";
@@ -131,7 +130,7 @@ export class ElementMap extends GameElement {
 
     private moveCreatures(frameCount: number) {
         this.creatures.forEach((creature, index) => {
-            if (frameCount % (1 / creature.speed) === 0) {
+            if (frameCount % creature.speedNoramlised === 0) {
                 const nextPosition = creature.getNextPosition(this.map)
 
                 if (nextPosition !== null) {

@@ -3,6 +3,7 @@ import {MapLayout} from "../../maps/maps.types";
 import {TileIdentifier} from "../tiles/element.tile.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 import {GameMap} from "../../maps/map.js";
+import {FRAMES_PER_SECOND} from "../../rendering.constants.js";
 
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number
@@ -27,6 +28,18 @@ export abstract class ElementCreature extends GameElement {
     public draw(frameCount: number) {
         super.draw(frameCount);
         this.drawHealthBar()
+    }
+
+    /**
+     * This is a value you can use to catch the right framerate at which the creature should move
+     */
+    public get speedNoramlised() {
+        // This allows us to make bigger speed numbers to mean that we want the move to happen on more frames
+        const speedInverted = 1 / this.speed
+
+        // We have to apply the frames per second to make sure the creature moves at the same speed independent of
+        // refresh rate
+        return speedInverted * FRAMES_PER_SECOND
     }
 
     public move(position: ElementPosition) {

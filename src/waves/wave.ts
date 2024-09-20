@@ -1,7 +1,9 @@
 import {ElementCreature} from "../elements/creatures/creature.js";
+import {ElementPosition} from "../elements/element.js";
 
 export type WaveConfig = {
     onDeployCreature: (creature: ElementCreature) => void
+    creatureStartingPosition: ElementPosition
 }
 
 export abstract class Wave {

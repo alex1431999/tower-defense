@@ -3,12 +3,16 @@ import {ElementCreature} from "../../../elements/creatures/creature.js";
 import {ElementCreatureNali} from "../../../elements/creatures/creature.nali.js";
 
 export class WaveFirst2 extends Wave {
-    public creatures: ElementCreature[] = [new ElementCreatureNali(), new ElementCreatureNali()]
 
     public creaturesRemaining: ElementCreature[]
 
     constructor(config: WaveConfig) {
         super(config);
         this.creaturesRemaining = [...this.creatures]
+    }
+
+
+    get creatures(): ElementCreature[] {
+        return [new ElementCreatureNali({position: this.config.creatureStartingPosition}), new ElementCreatureNali({position: this.config.creatureStartingPosition})]
     }
 }

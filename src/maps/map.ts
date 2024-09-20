@@ -1,9 +1,11 @@
 import {MapLayout} from "./maps.types.js";
 import {Wave} from "../waves/wave";
 import {ElementCreature} from "../elements/creatures/creature.js";
+import {ElementPosition} from "../elements/element";
 
 export type GameMapConfig = {
     onDeployCreature: (creature: ElementCreature) => void
+    creatureStartingPosition: ElementPosition
 }
 
 export abstract class GameMap {

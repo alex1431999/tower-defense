@@ -39,7 +39,6 @@ export class AnimationAttackArrow extends AnimationAttack {
     }
 
     public draw() {
-
         this.context.drawImage(spriterTowerArrowAttack.image, this.currentPosition.x, this.currentPosition.y)
 
         this.currentPosition.x += this.xStepSize

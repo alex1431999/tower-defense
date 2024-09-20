@@ -25,7 +25,10 @@ export class ElementMap extends GameElement {
     constructor() {
         super();
 
-        this.map = new MapFirst({onDeployCreature: this.onDeployCreature.bind(this)})
+        this.map = new MapFirst({
+            onDeployCreature: this.onDeployCreature.bind(this),
+            creatureStartingPosition: this.creatureStartingPosition
+        })
         this.map.start()
 
         this.tiles = this.generateTiles()
@@ -35,10 +38,6 @@ export class ElementMap extends GameElement {
         state.gameState = 'active'
 
         this.canvas.onclick = this.onClick.bind(this)
-    }
-
-    public get elements(): GameElement[] {
-        return [...this.tiles, ...this.creatures, ...this.towers]
     }
 
     public get width() {
@@ -67,6 +66,10 @@ export class ElementMap extends GameElement {
         }
 
         this.letTowersAttack()
+    }
+
+    private get creatureStartingPosition() {
+        return {x: 0, y: 1} // TODO actually calculate based on the map layout
     }
 
     private onClick(event: PointerEvent) {

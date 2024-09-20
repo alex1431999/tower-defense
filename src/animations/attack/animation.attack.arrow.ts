@@ -3,32 +3,50 @@ import {centerPositionInTile, positionToCanvasPosition} from "../../helper/canva
 import {spriterTowerArrowAttack} from "../../assets/sprites/tower/attack/spriter.tower.arrow.attack.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 import {renderer} from "../../renderer.js";
+import {ElementPosition} from "../../elements/element.js";
 
 export class AnimationAttackArrow extends AnimationAttack {
+    private totalSteps = 0
+
     private step = 0
 
-    public draw() {
+    private xStepSize = 0
+
+    private yStepSize = 0
+
+    public start(startingPosition: ElementPosition, targetPosition: ElementPosition) {
+        super.start(startingPosition, targetPosition);
+
         const totalSteps = FRAMES_PER_SECOND // It should take 1 second to arrive at the target
 
-        const currentPositionCanvas = positionToCanvasPosition(this.currentPosition)
+        const startingPositionCanvas = positionToCanvasPosition(this.currentPosition)
         const targetPositionCanvas = positionToCanvasPosition(this.targetPosition)
 
-        const currentPositionCanvasCentered = centerPositionInTile(currentPositionCanvas, 1, 1)
+        const startingPositionCanvasCentered = centerPositionInTile(startingPositionCanvas, 1, 1)
         const targetPositionCanvasCentered = centerPositionInTile(targetPositionCanvas, 1, 1)
 
-        const xDifference = targetPositionCanvasCentered.x - currentPositionCanvasCentered.x
-        const yDifference = targetPositionCanvasCentered.y - currentPositionCanvasCentered.y
+        const xDifference = targetPositionCanvasCentered.x - startingPositionCanvasCentered.x
+        const yDifference = targetPositionCanvasCentered.y - startingPositionCanvasCentered.y
 
-        const xStep = xDifference / totalSteps
-        const yStep = yDifference / totalSteps
+
+        this.step = 0
+        this.totalSteps = totalSteps
+
+        this.xStepSize = xDifference / totalSteps
+        this.yStepSize = yDifference / totalSteps
+
+        this.currentPosition = startingPositionCanvasCentered
+    }
+
+    public draw() {
 
         this.context.drawImage(spriterTowerArrowAttack.image, this.currentPosition.x, this.currentPosition.y)
 
-        this.currentPosition.x += xStep
-        this.currentPosition.y += yStep
+        this.currentPosition.x += this.xStepSize
+        this.currentPosition.y += this.yStepSize
         this.step += 1
 
-        if (this.step > totalSteps) {
+        if (this.step > this.totalSteps) {
             renderer.unregisterRenderable(this.id)
         }
     }

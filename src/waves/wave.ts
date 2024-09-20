@@ -1,5 +1,6 @@
 import {ElementCreature} from "../elements/creatures/creature.js";
 import {ElementPosition} from "../elements/element.js";
+import {FRAMES_PER_SECOND} from "../renderer.constants.js";
 
 export type WaveConfig = {
     onDeployCreature: (creature: ElementCreature) => void
@@ -15,6 +16,8 @@ export abstract class Wave {
 
     public config: WaveConfig
 
+    public spawnRate = FRAMES_PER_SECOND // By default spawn one creature every second
+
     protected constructor(config: WaveConfig) {
         this.config = config
     }
@@ -22,7 +25,7 @@ export abstract class Wave {
     public onTurn(frameCount: number) {
         // By default we will deploy just deploy one creature a turn, this can be overwritten by any wave
         // implementation
-        if (this.creaturesRemaining.length) {
+        if (this.creaturesRemaining.length && frameCount % this.spawnRate === 0) {
             this.deployCreature(0)
         }
     }

@@ -7,6 +7,10 @@ export abstract class Renderable {
 
     public abstract draw(frameCount: number): void
 
+    public afterDraw(frameCount: number) {
+        return // Do nothing by default
+    }
+
     protected constructor() {
         this.id = uuid()
     }

@@ -62,10 +62,17 @@ export class ElementMap extends GameElement {
 
         if (state.gameState === 'active') {
             this.map.wave.onTurn(frameCount)
-            this.moveCreatures(frameCount)
         }
 
         this.letTowersAttack()
+    }
+
+    public afterDraw(frameCount: number) {
+        super.afterDraw(frameCount);
+
+        if (state.gameState === 'active') {
+            this.moveCreatures(frameCount)
+        }
     }
 
     private get creatureStartingPosition() {

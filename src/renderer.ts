@@ -24,6 +24,7 @@ class Renderer {
 
     private render() {
         this.renderables.forEach(renderable => renderable.draw(this.frameCount))
+        this.renderables.forEach(renderable => renderable.afterDraw(this.frameCount))
         this.frameCount += 1
     }
 }

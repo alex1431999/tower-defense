@@ -5,6 +5,7 @@ import {CanvasPosition} from "../../canvas.js";
 import {centerPositionInTile} from "../../helper/canvas.js";
 import {Sprite} from "../../assets/sprites/sprite.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
+import {copy} from "../../helper/util.js";
 
 export type ElementTowerName = 'arrow'
 
@@ -59,7 +60,7 @@ export abstract class ElementTower extends GameElement {
     protected abstract doAttack(creatures: ElementCreature[]): boolean
 
     protected doAttackAnimation(targetPosition: ElementPosition) {
-        this.attackAnimation.start(this.position, targetPosition)
+        this.attackAnimation.start(copy(this.position), targetPosition)
     }
 
 

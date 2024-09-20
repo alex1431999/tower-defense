@@ -1,6 +1,7 @@
 import {canvas} from "../canvas.js";
+import {Renderable} from "../renderable.js";
 
-export abstract class GameAnimation {
+export abstract class GameAnimation extends Renderable {
     public canvas: HTMLCanvasElement = canvas
 
     protected get context() {

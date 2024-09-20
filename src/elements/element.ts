@@ -1,11 +1,12 @@
 import {canvas, CanvasPosition} from "../canvas.js";
 import {positionToCanvasPosition} from "../helper/canvas.js";
+import {Renderable} from "../renderable.js";
 
 export type ElementPosition = { x: number, y: number }
 
 export type ElementConfig = { position?: ElementPosition }
 
-export class GameElement {
+export class GameElement extends Renderable {
     public canvas: HTMLCanvasElement = canvas
 
     public position: ElementPosition
@@ -15,6 +16,7 @@ export class GameElement {
     }
 
     constructor(config?: ElementConfig) {
+        super()
         this.position = config?.position || {x: 0, y: 0}
     }
 

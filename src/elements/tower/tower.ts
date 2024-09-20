@@ -4,7 +4,7 @@ import {AnimationAttack} from "../../animations/attack/animation.attack.js";
 import {CanvasPosition} from "../../canvas.js";
 import {centerPositionInTile} from "../../helper/canvas.js";
 import {Sprite} from "../../assets/sprites/sprite.js";
-import {FRAMES_PER_SECOND} from "../../rendering.constants.js";
+import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 
 export type ElementTowerName = 'arrow'
 

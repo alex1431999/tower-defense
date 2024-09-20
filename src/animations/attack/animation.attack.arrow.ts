@@ -2,7 +2,7 @@ import {ElementPosition} from "../../elements/element.js";
 import {AnimationAttack} from "./animation.attack.js";
 import {centerPositionInTile, positionToCanvasPosition} from "../../helper/canvas.js";
 import {spriterTowerArrowAttack} from "../../assets/sprites/tower/attack/spriter.tower.arrow.attack.js";
-import {FRAMES_PER_SECOND, REFRESH_INTERVAL} from "../../rendering.constants.js";
+import {FRAMES_PER_SECOND, REFRESH_INTERVAL} from "../../renderer.constants.js";
 import {doTimesWithDelay} from "../../helper/util.js";
 
 export class AnimationAttackArrow extends AnimationAttack {

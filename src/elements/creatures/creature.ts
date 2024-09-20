@@ -3,7 +3,7 @@ import {MapLayout} from "../../maps/maps.types";
 import {TileIdentifier} from "../tiles/element.tile.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 import {GameMap} from "../../maps/map.js";
-import {FRAMES_PER_SECOND} from "../../rendering.constants.js";
+import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number

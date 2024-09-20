@@ -17,7 +17,7 @@ export class AnimationAttackArrow extends AnimationAttack {
     public start(startingPosition: ElementPosition, targetPosition: ElementPosition) {
         super.start(startingPosition, targetPosition);
 
-        const totalSteps = FRAMES_PER_SECOND // It should take 1 second to arrive at the target
+        const totalSteps = FRAMES_PER_SECOND / 4 // It should take 0.25 second to arrive at the target
 
         const startingPositionCanvas = positionToCanvasPosition(this.currentPosition)
         const targetPositionCanvas = positionToCanvasPosition(this.targetPosition)

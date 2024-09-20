@@ -60,10 +60,6 @@ export class ElementMap extends GameElement {
             this.deployNextWave()
         }
 
-        if (state.gameState === 'active') {
-            this.map.wave.onTurn(frameCount)
-        }
-
         this.letTowersAttack()
     }
 
@@ -72,6 +68,7 @@ export class ElementMap extends GameElement {
 
         if (state.gameState === 'active') {
             this.moveCreatures(frameCount)
+            this.map.wave.onTurn(frameCount)
         }
     }
 

@@ -41,9 +41,7 @@ export abstract class ElementTower extends GameElement {
     }
 
 
-    public draw(frameCount: number) {
-        super.draw(frameCount);
-
+    public draw() {
         this.context.drawImage(this.sprite.image, this.canvasPosition.x, this.canvasPosition.y)
     }
 

@@ -11,6 +11,7 @@ import {canvasPositionToPosition} from "../helper/canvas.js";
 import {ElementTilePath} from "./tiles/element.tile.path.js";
 import {ElementTilePlot} from "./tiles/element.tile.plot.js";
 import {ALL_TOWER_CLASSES_MAP} from "./tower/tower.constants.js";
+import {renderer} from "../renderer.js";
 
 export class ElementMap extends GameElement {
     public map: GameMap
@@ -28,6 +29,8 @@ export class ElementMap extends GameElement {
         this.map.start()
 
         this.tiles = this.generateTiles()
+
+        renderer.registerRenderables(this.tiles)
 
         state.gameState = 'active'
 
@@ -63,7 +66,6 @@ export class ElementMap extends GameElement {
             this.moveCreatures(frameCount)
         }
 
-        super.draw(frameCount)
         this.letTowersAttack()
     }
 
@@ -104,6 +106,8 @@ export class ElementMap extends GameElement {
 
         this.towers.push(tower)
 
+        renderer.registerRenderable(tower)
+
         state.towerForPurchaseSelected = null
     }
 
@@ -121,6 +125,7 @@ export class ElementMap extends GameElement {
 
     private onDeployCreature(creature: ElementCreature) {
         this.creatures.push(creature)
+        renderer.registerRenderable(creature)
     }
 
     private deployNextWave() {

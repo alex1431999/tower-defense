@@ -6,16 +6,12 @@ export type ElementPosition = { x: number, y: number }
 
 export type ElementConfig = { position?: ElementPosition }
 
-export class GameElement extends Renderable {
+export abstract class GameElement extends Renderable {
     public canvas: HTMLCanvasElement = canvas
 
     public position: ElementPosition
 
-    public get elements(): GameElement[] {
-        return []
-    }
-
-    constructor(config?: ElementConfig) {
+    protected constructor(config?: ElementConfig) {
         super()
         this.position = config?.position || {x: 0, y: 0}
     }
@@ -26,12 +22,5 @@ export class GameElement extends Renderable {
 
     protected get context() {
         return this.canvas.getContext('2d')
-    }
-
-    /**
-     * Gets triggered on each frame
-     */
-    public draw(frameCount: number) {
-        this.elements.map(element => element.draw(frameCount))
     }
 }

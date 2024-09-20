@@ -15,8 +15,6 @@ export abstract class ElementTile extends GameElement {
     }
 
     public draw(frameCount: number) {
-        super.draw(frameCount);
-
         this.context.drawImage(this.sprite.image, this.canvasPosition.x, this.canvasPosition.y)
     }
 }

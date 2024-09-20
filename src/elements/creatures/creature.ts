@@ -26,7 +26,6 @@ export abstract class ElementCreature extends GameElement {
     }
 
     public draw(frameCount: number) {
-        super.draw(frameCount);
         this.drawHealthBar()
     }
 

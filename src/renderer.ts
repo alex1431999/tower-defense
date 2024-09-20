@@ -2,16 +2,20 @@ import {Renderable, RenderableId} from "./renderable.js";
 import {REFRESH_INTERVAL} from "./renderer.constants.js";
 
 class Renderer {
-    private renderables: Renderable[]
+    private renderables: Renderable[] = []
 
     private frameCount = 0
 
     public start() {
-        setTimeout(this.render.bind(this), REFRESH_INTERVAL)
+        setInterval(this.render.bind(this), REFRESH_INTERVAL)
     }
 
     public registerRenderable(renderable: Renderable): void {
         this.renderables.push(renderable)
+    }
+
+    public registerRenderables(renderables: Renderable[]) {
+        renderables.forEach(this.registerRenderable.bind(this))
     }
 
     public unregisterRenderable(id: RenderableId) {

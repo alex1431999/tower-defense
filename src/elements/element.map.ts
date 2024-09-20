@@ -163,6 +163,11 @@ export class ElementMap extends GameElement {
     }
 
     private removeDeadCreatures() {
+        this.creatures.forEach(creature => {
+            if (creature.healthPoints <= 0) {
+                renderer.unregisterRenderable(creature.id)
+            }
+        })
         this.creatures = this.creatures.filter(creature => creature.healthPoints > 0)
     }
 

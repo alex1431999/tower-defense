@@ -21,7 +21,19 @@ export class ElementTowerRocks extends ElementTower {
     public attackAnimation: AnimationAttack = new AnimationAttackRocks()
 
     protected doAttack(creatures: ElementCreature[]): boolean {
-        throw new Error("Method not implemented.");
+        const creaturesInRange = this.getCreaturesInRange(creatures)
+
+        // Nothing in range so we don't attack
+        if (!creaturesInRange.length) {
+            return false
+        }
+
+        creaturesInRange.forEach(creature => {
+            this.doAttackAnimation(creature.position)
+            creature.takeDamage(this.damage)
+        })
+
+        return true
     }
 
 }

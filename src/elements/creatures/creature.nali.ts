@@ -1,9 +1,9 @@
 import {ElementCreature} from "./creature.js";
 
 export class ElementCreatureNali extends ElementCreature {
-    public healthPoints: number = 3
+    public healthPoints: number = 10
 
-    public maxHealthPoints: number = 3
+    public maxHealthPoints: number = 10
 
     public currencyReward: number = 5
 

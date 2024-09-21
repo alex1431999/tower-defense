@@ -38,7 +38,7 @@ export abstract class ElementTower extends GameElement {
     }
 
     public get attackSpeedNoramlised() {
-        return this.attackSpeed * FRAMES_PER_SECOND
+        return 1 / this.attackSpeed * FRAMES_PER_SECOND
     }
 
 

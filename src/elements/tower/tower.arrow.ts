@@ -13,9 +13,9 @@ export class ElementTowerArrow extends ElementTower {
 
     public damage = 1
 
-    public range = 3
+    public range = 2
 
-    public attackSpeed = 2
+    public attackSpeed = 1
 
     public attackAnimation = new AnimationAttackArrow()
 

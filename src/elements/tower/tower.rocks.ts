@@ -18,7 +18,7 @@ export class ElementTowerRocks extends ElementTower {
 
     public range: number = 1
 
-    public attackSpeed: number = 1
+    public attackSpeed: number = 0.25
 
     public attackAnimation: AnimationAttack = new AnimationAttackRocks()
 

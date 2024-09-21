@@ -1,8 +1,7 @@
 import {AnimationAttack} from "./animation.attack.js";
 import {renderer} from "../../renderer.js";
-import {ElementPosition} from "../../elements/element.js";
+import {ElementCanvasPosition} from "../../elements/element.js";
 import {spriteTowerRocksAttack} from "../../assets/sprites/tower/attack/sprite.tower.rocks.attack.js";
-import {positionToCanvasPosition} from "../../helper/canvas.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 
 export class AnimationAttackRocks extends AnimationAttack {
@@ -10,15 +9,13 @@ export class AnimationAttackRocks extends AnimationAttack {
 
     private step = 0
 
-    public start(startingPosition: ElementPosition, targetPosition: ElementPosition) {
+    public start(startingPosition: ElementCanvasPosition, targetPosition: ElementCanvasPosition) {
         super.start(startingPosition, targetPosition);
         this.step = 0
     }
 
     public draw() {
-        const targetCanvasPosition = positionToCanvasPosition(this.targetPosition)
-
-        this.context.drawImage(spriteTowerRocksAttack.image, targetCanvasPosition.x, targetCanvasPosition.y)
+        this.context.drawImage(spriteTowerRocksAttack.image, this.targetPosition.x, this.targetPosition.y)
 
         this.step += 1
 

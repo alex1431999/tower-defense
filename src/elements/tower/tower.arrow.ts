@@ -29,7 +29,7 @@ export class ElementTowerArrow extends ElementTower {
 
         const [firstCreature] = creaturesInRange
 
-        this.doAttackAnimation(firstCreature.position)
+        this.doAttackAnimation(firstCreature.canvasPosition)
 
         firstCreature.takeDamage(this.damage)
 

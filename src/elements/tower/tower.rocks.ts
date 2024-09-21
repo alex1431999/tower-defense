@@ -4,7 +4,7 @@ import {ElementCreature} from "../creatures/creature.js";
 import {ElementTower, ElementTowerName} from "./tower.js";
 import {spriteTowerRocks} from "../../assets/sprites/tower/sprite.tower.rocks.js";
 import {AnimationAttackRocks} from "../../animations/attack/animation.attack.rocks.js";
-import {ElementPosition} from "../element.js";
+import {ElementCanvasPosition, ElementPosition} from "../element.js";
 import {copy} from "../../helper/util.js";
 
 export class ElementTowerRocks extends ElementTower {
@@ -31,14 +31,14 @@ export class ElementTowerRocks extends ElementTower {
         }
 
         creaturesInRange.forEach(creature => {
-            this.doAttackAnimation(creature.position)
+            this.doAttackAnimation(creature.canvasPosition)
             creature.takeDamage(this.damage)
         })
 
         return true
     }
 
-    protected doAttackAnimation(targetPosition: ElementPosition) {
+    protected doAttackAnimation(targetPosition: ElementCanvasPosition) {
         const attackAnimation = new AnimationAttackRocks()
         attackAnimation.start(copy(this.position), targetPosition)
     }

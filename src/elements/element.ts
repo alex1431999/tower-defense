@@ -4,6 +4,8 @@ import {Renderable} from "../renderable.js";
 
 export type ElementPosition = { x: number, y: number }
 
+export type ElementCanvasPosition = ElementPosition
+
 export type ElementConfig = { position?: ElementPosition }
 
 export abstract class GameElement extends Renderable {

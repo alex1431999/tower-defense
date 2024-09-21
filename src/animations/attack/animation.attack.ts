@@ -1,15 +1,15 @@
 import {GameAnimation} from "../animation.js";
-import {ElementPosition} from "../../elements/element.js";
+import {ElementCanvasPosition} from "../../elements/element.js";
 import {renderer} from "../../renderer.js";
 
 export abstract class AnimationAttack extends GameAnimation {
-    protected startingPosition: ElementPosition = null
+    protected startingPosition: ElementCanvasPosition = null
 
-    protected targetPosition: ElementPosition = null
+    protected targetPosition: ElementCanvasPosition = null
 
-    protected currentPosition: ElementPosition = null
+    protected currentPosition: ElementCanvasPosition = null
 
-    public start(startingPosition: ElementPosition, targetPosition: ElementPosition) {
+    public start(startingPosition: ElementCanvasPosition, targetPosition: ElementCanvasPosition) {
         this.startingPosition = startingPosition
         this.targetPosition = targetPosition
         this.currentPosition = startingPosition

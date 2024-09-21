@@ -16,7 +16,7 @@ export class ElementTowerRocks extends ElementTower {
 
     public damage: number = 0.5
 
-    public range: number = 2
+    public range: number = 1
 
     public attackSpeed: number = 1
 

@@ -76,9 +76,8 @@ export abstract class ElementTower extends GameElement {
         return creatures.filter(creature => {
             const xDifference = Math.abs(creature.position.x - this.position.x)
             const yDifference = Math.abs(creature.position.y - this.position.y)
-            const distance = xDifference + yDifference
 
-            return distance <= this.range
+            return xDifference <= this.range && yDifference <= this.range
         })
     }
 }

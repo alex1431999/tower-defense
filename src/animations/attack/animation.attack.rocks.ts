@@ -5,7 +5,7 @@ import {spriteTowerRocksAttack} from "../../assets/sprites/tower/attack/sprite.t
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 
 export class AnimationAttackRocks extends AnimationAttack {
-    private allSteps = FRAMES_PER_SECOND / 2   // We should see the animation for half a second
+    private allSteps = FRAMES_PER_SECOND   // We should see the animation for a second
 
     private step = 0
 

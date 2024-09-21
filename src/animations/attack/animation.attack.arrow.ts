@@ -1,6 +1,6 @@
 import {AnimationAttack} from "./animation.attack.js";
 import {centerPositionInTile, positionToCanvasPosition} from "../../helper/canvas.js";
-import {spriterTowerArrowAttack} from "../../assets/sprites/tower/attack/spriter.tower.arrow.attack.js";
+import {spriteTowerArrowAttack} from "../../assets/sprites/tower/attack/sprite.tower.arrow.attack.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 import {renderer} from "../../renderer.js";
 import {ElementPosition} from "../../elements/element.js";
@@ -39,7 +39,7 @@ export class AnimationAttackArrow extends AnimationAttack {
     }
 
     public draw() {
-        this.context.drawImage(spriterTowerArrowAttack.image, this.currentPosition.x, this.currentPosition.y)
+        this.context.drawImage(spriteTowerArrowAttack.image, this.currentPosition.x, this.currentPosition.y)
 
         this.currentPosition.x += this.xStepSize
         this.currentPosition.y += this.yStepSize

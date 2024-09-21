@@ -4,6 +4,7 @@ import {TileIdentifier} from "../tiles/element.tile.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 import {GameMap} from "../../maps/map.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
+import {positionToCanvasPosition} from "../../helper/canvas.js";
 
 export abstract class ElementCreature extends GameElement {
     public abstract healthPoints: number
@@ -20,6 +21,8 @@ export abstract class ElementCreature extends GameElement {
 
     public height = 25
 
+    protected movingStep = 0
+
     constructor(config?: ElementConfig) {
         super(config);
         this.positionPrevious = this.position
@@ -27,6 +30,11 @@ export abstract class ElementCreature extends GameElement {
 
     public draw(frameCount: number) {
         this.drawHealthBar()
+        this.movingStep += 1
+
+        if (this.movingStep % this.speedNoramlised === 0) {
+            this.movingStep = 0
+        }
     }
 
     /**
@@ -79,12 +87,30 @@ export abstract class ElementCreature extends GameElement {
      * By default, center all creatures in the middle of the tile
      */
     public get canvasPosition(): ElementPosition {
-        const position = super.canvasPosition
+        const positionCentered = positionToCanvasPosition(this.positionPrevious)
+        const nextPositionCentered = positionToCanvasPosition(this.position)
 
-        position.x += (TILE_WIDTH - this.width) / 2
-        position.y += (TILE_HEIGHT - this.height) / 2
+        positionCentered.x += (TILE_WIDTH - this.width) / 2
+        positionCentered.y += (TILE_HEIGHT - this.height) / 2
 
-        return position
+        nextPositionCentered.x += (TILE_WIDTH - this.width) / 2
+        nextPositionCentered.y += (TILE_HEIGHT - this.height) / 2
+
+
+        const allSteps = this.speedNoramlised
+
+        const xDifference = positionCentered.x - nextPositionCentered.x
+        const yDifference = positionCentered.y - nextPositionCentered.y
+
+        const xStep = xDifference !== 0 ? xDifference / allSteps : 0
+        const yStep = yDifference !== 0 ? yDifference / allSteps : 0
+
+        const finalPosition: ElementPosition = {
+            x: positionCentered.x - (this.movingStep * xStep),
+            y: positionCentered.y - (this.movingStep * yStep)
+        }
+
+        return finalPosition
     }
 
     private canMoveToTile(mapLayout: MapLayout, x: number, y: number): boolean {

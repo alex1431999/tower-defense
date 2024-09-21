@@ -7,7 +7,7 @@ import {Sprite} from "../../assets/sprites/sprite.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 import {copy} from "../../helper/util.js";
 
-export type ElementTowerName = 'arrow'
+export type ElementTowerName = 'arrow' | 'rocks'
 
 export abstract class ElementTower extends GameElement {
     public abstract name: ElementTowerName

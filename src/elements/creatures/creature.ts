@@ -29,12 +29,13 @@ export abstract class ElementCreature extends GameElement {
     }
 
     public draw(frameCount: number) {
-        this.drawHealthBar()
         this.movingStep += 1
 
         if (this.movingStep % this.speedNoramlised === 0) {
             this.movingStep = 0
         }
+
+        this.drawHealthBar()
     }
 
     /**

@@ -60,6 +60,7 @@ export abstract class ElementTower extends GameElement {
     protected abstract doAttack(creatures: ElementCreature[]): boolean
 
     protected doAttackAnimation(targetPosition: ElementPosition) {
+        // TODO we could use canvas position here to get more accurate animations
         this.attackAnimation.start(copy(this.position), targetPosition)
     }
 

@@ -4,6 +4,8 @@ import {ElementCreature} from "../creatures/creature.js";
 import {ElementTower, ElementTowerName} from "./tower.js";
 import {spriteTowerRocks} from "../../assets/sprites/tower/sprite.tower.rocks.js";
 import {AnimationAttackRocks} from "../../animations/attack/animation.attack.rocks.js";
+import {ElementPosition} from "../element.js";
+import {copy} from "../../helper/util.js";
 
 export class ElementTowerRocks extends ElementTower {
     public name: ElementTowerName = 'rocks'
@@ -14,7 +16,7 @@ export class ElementTowerRocks extends ElementTower {
 
     public damage: number = 0.5
 
-    public range: number = 1
+    public range: number = 2
 
     public attackSpeed: number = 1
 
@@ -36,4 +38,8 @@ export class ElementTowerRocks extends ElementTower {
         return true
     }
 
+    protected doAttackAnimation(targetPosition: ElementPosition) {
+        const attackAnimation = new AnimationAttackRocks()
+        attackAnimation.start(copy(this.position), targetPosition)
+    }
 }

@@ -96,4 +96,4 @@ export class State {
     }
 }
 
-export const state = new State({healthPoints: 10, startingBalance: 100})
+export const state = new State({healthPoints: 10, startingBalance: 150})

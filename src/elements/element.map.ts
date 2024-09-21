@@ -150,6 +150,7 @@ export class ElementMap extends GameElement {
                 } else {
                     state.healthPoints -= 1
                     this.creatures.splice(index, 1)
+                    renderer.unregisterRenderable(creature.id)
                 }
             }
         })

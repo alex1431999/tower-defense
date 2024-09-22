@@ -3,7 +3,7 @@
     <link href='https://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet'>
 </head>
 <body>
-    <div style="   display: flex; justify-content: space-between">
+    <div style="         display: flex; justify-content: space-between">
         <canvas id="canvas"></canvas>
         <div>
             <div class="card">
@@ -11,9 +11,16 @@
                     <game-state id="state"/>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card__content">
                     <tower-selector></tower-selector>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__content">
+                    <tower-upgrade-menu id="towerUpgradeMenu"></tower-upgrade-menu>
                 </div>
             </div>
         </div>

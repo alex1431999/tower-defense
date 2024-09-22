@@ -1,5 +1,6 @@
 import {ElementTower, ElementTowerName} from "./elements/tower/tower.js";
 import {canvas} from "./canvas.js";
+import {ComponentTowerUpgradeMenu} from "./components/component.towerUpgradeMenu.js";
 
 export type StateConfig = { healthPoints: number, startingBalance: number }
 
@@ -71,6 +72,10 @@ export class State {
 
     public set towerSelected(towerSelected: ElementTower | null) {
         this._towerSelected = towerSelected
+
+        this.safeDomUpdate<ComponentTowerUpgradeMenu>('towerUpgradeMenu', (element) => {
+            element.selectTower(towerSelected)
+        })
     }
 
     public addToBalance(amount: number) {
@@ -97,8 +102,9 @@ export class State {
     }
 
     private domGet<T extends HTMLElement>(id: string): T | null {
-        const element = this.shadowRoot?.getElementById(id)
-        return element as T || null
+        const elementInRoot = document.getElementById(id)
+        const elementInStateRoot = this.shadowRoot?.getElementById(id)
+        return elementInStateRoot as T || elementInRoot as T || null
     }
 
     private get shadowRoot() {

@@ -7,7 +7,7 @@ export abstract class Upgrade {
 
     public abstract upgrade(tower: ElementTower): void
 
-    public abstract getPrice(tower: ElementTower): void
+    public abstract getPrice(tower: ElementTower): number
 
     public timesUpgraded = 0
 }

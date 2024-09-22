@@ -1,5 +1,6 @@
 import {ElementTower} from "../elements/tower/tower.js";
-import {Upgrade} from "../elements/tower/upgrades/upgrade";
+import {Upgrade} from "../elements/tower/upgrades/upgrade.js";
+import {state} from "../state.js";
 
 export class ComponentTowerUpgradeMenu extends HTMLElement {
     private shadow: ShadowRoot
@@ -58,8 +59,22 @@ export class ComponentTowerUpgradeMenu extends HTMLElement {
         const button = document.createElement('button')
         button.innerText = `${upgrade.name} - $${upgrade.getPrice(tower)}`
 
-        button.onclick = () => upgrade.upgrade(tower)
+        button.onclick = () => this.purchaseUpgrade(tower, upgrade)
 
         this.shadow.appendChild(button)
+    }
+
+    private purchaseUpgrade(tower: ElementTower, upgrade: Upgrade) {
+        const price = upgrade.getPrice(tower)
+
+        if (price > state.balance) {
+            throw new Error('Not enough balance to purchase upgrade')
+        }
+
+        state.balance -= price
+
+        upgrade.upgrade(tower)
+
+        this.render(tower)
     }
 }

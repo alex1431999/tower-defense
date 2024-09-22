@@ -1,6 +1,6 @@
 import {ElementTower} from "../tower"
 
-export type UpgradeName = 'damage'
+export type UpgradeName = 'damage' | 'attackSpeed'
 
 export abstract class Upgrade {
     public abstract name: UpgradeName

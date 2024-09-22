@@ -5,7 +5,7 @@ export class UpgradeAttackSpeed extends Upgrade {
     public name: UpgradeName = 'attackSpeed'
 
     public upgrade(tower: ElementTower) {
-        tower.attackSpeed += 0.1
+        tower.attackSpeed += 0.2
         this.timesUpgraded += 1
     }
 

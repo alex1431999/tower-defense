@@ -1,4 +1,4 @@
-import {ElementTowerName} from "./elements/tower/tower.js";
+import {ElementTower, ElementTowerName} from "./elements/tower/tower.js";
 import {canvas} from "./canvas.js";
 
 export type StateConfig = { healthPoints: number, startingBalance: number }
@@ -13,6 +13,8 @@ export class State {
     private _balance: number
 
     private _towerForPurchaseSelected: ElementTowerName | null = null
+
+    private _towerSelected: ElementTower | null = null
 
     constructor(config: StateConfig) {
         this.healthPoints = config.healthPoints
@@ -53,14 +55,22 @@ export class State {
         return this._towerForPurchaseSelected
     }
 
-    public set towerForPurchaseSelected(towerSelected: ElementTowerName | null) {
-        this._towerForPurchaseSelected = towerSelected
+    public set towerForPurchaseSelected(towerForPurchaseselected: ElementTowerName | null) {
+        this._towerForPurchaseSelected = towerForPurchaseselected
 
-        if (towerSelected === null) {
+        if (towerForPurchaseselected === null) {
             canvas.style.cursor = 'unset'
         } else {
             canvas.style.cursor = 'crosshair'
         }
+    }
+
+    public get towerSelected() {
+        return this._towerSelected
+    }
+
+    public set towerSelected(towerSelected: ElementTower | null) {
+        this._towerSelected = towerSelected
     }
 
     public addToBalance(amount: number) {

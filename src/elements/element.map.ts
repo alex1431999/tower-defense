@@ -98,7 +98,11 @@ export class ElementMap extends GameElement {
     }
 
     private onClickPlot(tile: ElementTilePlot) {
-        if (state.towerForPurchaseSelected) {
+        const towerOnPlot = this.getTowerByPosition(tile.position)
+
+        if (towerOnPlot) {
+            state.towerSelected = towerOnPlot
+        } else if (state.towerForPurchaseSelected) {
             this.purchaseTower(tile)
         }
     }
@@ -195,5 +199,9 @@ export class ElementMap extends GameElement {
         }
 
         return tiles
+    }
+
+    private getTowerByPosition(position: ElementPosition) {
+        return this.towers.find(tower => tower.position === position)
     }
 }

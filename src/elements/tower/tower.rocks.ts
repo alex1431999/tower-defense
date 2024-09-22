@@ -4,8 +4,9 @@ import {ElementCreature} from "../creatures/creature.js";
 import {ElementTower, ElementTowerName} from "./tower.js";
 import {spriteTowerRocks} from "../../assets/sprites/tower/sprite.tower.rocks.js";
 import {AnimationAttackRocks} from "../../animations/attack/animation.attack.rocks.js";
-import {ElementCanvasPosition, ElementPosition} from "../element.js";
+import {ElementCanvasPosition} from "../element.js";
 import {copy} from "../../helper/util.js";
+import {UpgradeDamage} from "./upgrades/upgrade.damage.js";
 
 export class ElementTowerRocks extends ElementTower {
     public name: ElementTowerName = 'rocks'
@@ -21,6 +22,8 @@ export class ElementTowerRocks extends ElementTower {
     public attackSpeed: number = 0.25
 
     public attackAnimation: AnimationAttack = new AnimationAttackRocks()
+
+    public availableUpgrades = [new UpgradeDamage()]
 
     protected doAttack(creatures: ElementCreature[]): boolean {
         const creaturesInRange = this.getCreaturesInRange(creatures)

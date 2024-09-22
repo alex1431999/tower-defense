@@ -6,6 +6,7 @@ import {centerPositionInTile} from "../../helper/canvas.js";
 import {Sprite} from "../../assets/sprites/sprite.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 import {copy} from "../../helper/util.js";
+import {Upgrade} from "./upgrades/upgrade";
 
 export type ElementTowerName = 'arrow' | 'rocks'
 
@@ -26,6 +27,8 @@ export abstract class ElementTower extends GameElement {
 
     // The attack animation the tower does
     public abstract attackAnimation: AnimationAttack
+
+    public abstract availableUpgrades: Upgrade[]
 
     public cooldown: number = 0
 

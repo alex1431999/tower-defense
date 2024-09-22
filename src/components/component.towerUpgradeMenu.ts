@@ -1,4 +1,5 @@
 import {ElementTower} from "../elements/tower/tower.js";
+import {Upgrade} from "../elements/tower/upgrades/upgrade";
 
 export class ComponentTowerUpgradeMenu extends HTMLElement {
     private shadow: ShadowRoot
@@ -50,11 +51,15 @@ export class ComponentTowerUpgradeMenu extends HTMLElement {
 
         this.shadow.appendChild(paragraphName)
 
-        tower.availableUpgrades.forEach(upgrade => {
-            const button = document.createElement('button')
-            button.innerText = `${upgrade.name} - $${upgrade.getPrice(tower)}`
+        tower.availableUpgrades.forEach(upgrade => this.generateTowerUpgrade(tower, upgrade))
+    }
 
-            this.shadow.appendChild(button)
-        })
+    private generateTowerUpgrade(tower: ElementTower, upgrade: Upgrade) {
+        const button = document.createElement('button')
+        button.innerText = `${upgrade.name} - $${upgrade.getPrice(tower)}`
+
+        button.onclick = () => upgrade.upgrade(tower)
+
+        this.shadow.appendChild(button)
     }
 }

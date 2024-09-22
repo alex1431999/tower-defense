@@ -77,6 +77,8 @@ export class ElementMap extends GameElement {
     }
 
     private onClick(event: PointerEvent) {
+        this.resetActions()
+
         const x = event.offsetX
         const y = event.offsetY
 
@@ -105,6 +107,10 @@ export class ElementMap extends GameElement {
         } else if (state.towerForPurchaseSelected) {
             this.purchaseTower(tile)
         }
+    }
+
+    private resetActions() {
+        state.towerSelected = null
     }
 
     private purchaseTower(tile: ElementTilePlot) {

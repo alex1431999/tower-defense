@@ -49,5 +49,12 @@ export class ComponentTowerUpgradeMenu extends HTMLElement {
         paragraphName.innerText = `${tower.name} Tower`
 
         this.shadow.appendChild(paragraphName)
+
+        tower.availableUpgrades.forEach(upgrade => {
+            const button = document.createElement('button')
+            button.innerText = `${upgrade.name} - $${upgrade.getPrice(tower)}`
+
+            this.shadow.appendChild(button)
+        })
     }
 }

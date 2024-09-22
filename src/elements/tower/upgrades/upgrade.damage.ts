@@ -11,6 +11,6 @@ export class UpgradeDamage extends Upgrade {
 
     public getPrice(tower: ElementTower) {
         const basePrice = 20
-        return basePrice * this.timesUpgraded
+        return basePrice * (this.timesUpgraded + 1)
     }
 }

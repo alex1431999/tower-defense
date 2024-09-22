@@ -5,6 +5,7 @@ import {WaveFirst1} from "../waves/maps/first/wave.first.1.js";
 import {WaveFirst2} from "../waves/maps/first/wave.first.2.js";
 import {WaveFirst3} from "../waves/maps/first/wave.first.3.js";
 import {WaveFirst4} from "../waves/maps/first/wave.first.4.js";
+import {WaveFirst5} from "../waves/maps/first/wave.first.5.js";
 
 export class MapFirst extends GameMap {
     public layout: MapLayout = [
@@ -34,6 +35,7 @@ export class MapFirst extends GameMap {
             new WaveFirst2(this.config),
             new WaveFirst3(this.config),
             new WaveFirst4(this.config),
+            new WaveFirst5(this.config)
         ]
     }
 }

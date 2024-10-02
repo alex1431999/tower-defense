@@ -5,6 +5,7 @@ import {spriteTowerArrow} from "../../assets/sprites/tower/sprite.tower.arrow.js
 import {Sprite} from "../../assets/sprites/sprite.js";
 import {UpgradeDamage} from "./upgrades/upgrade.damage.js";
 import {UpgradeAttackSpeed} from "./upgrades/upgrade.attackSpeed.js";
+import {UpgradeFire} from "./upgrades/upgrade.fire.js";
 
 export class ElementTowerArrow extends ElementTower {
     public name: ElementTowerName = 'arrow'
@@ -21,7 +22,7 @@ export class ElementTowerArrow extends ElementTower {
 
     public attackAnimation = new AnimationAttackArrow()
 
-    public availableUpgrades = [new UpgradeDamage(), new UpgradeAttackSpeed()]
+    public availableUpgrades = [new UpgradeDamage(), new UpgradeAttackSpeed(), new UpgradeFire()]
 
     public doAttack(creatures: ElementCreature[]) {
         const creaturesInRange = this.getCreaturesInRange(creatures)
@@ -36,6 +37,7 @@ export class ElementTowerArrow extends ElementTower {
         this.doAttackAnimation(firstCreature.canvasPosition)
 
         firstCreature.takeDamage(this.damage)
+        firstCreature.applyFireDamage(this.elementalDamage.fire)
 
         return true
     }

@@ -3,7 +3,7 @@ import {MapLayout} from "../../maps/maps.types";
 import {TileIdentifier} from "../tiles/element.tile.js";
 import {TILE_HEIGHT, TILE_WIDTH} from "../../helper/canvas.constants.js";
 import {GameMap} from "../../maps/map.js";
-import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
+import {FRAMES_PER_SECOND, REFRESH_INTERVAL} from "../../renderer.constants.js";
 import {positionToCanvasPosition} from "../../helper/canvas.js";
 
 export abstract class ElementCreature extends GameElement {
@@ -22,6 +22,8 @@ export abstract class ElementCreature extends GameElement {
     public height = 25
 
     protected movingStep = 0
+
+    protected elementalDamageIntervalId: number | null = null
 
     constructor(config?: ElementConfig) {
         super(config);
@@ -82,6 +84,29 @@ export abstract class ElementCreature extends GameElement {
 
     public takeDamage(amount: number) {
         this.healthPoints -= amount
+    }
+
+    public applyFireDamage(amount: number) {
+        if (amount === 0) return
+
+        // Applying fire damage again will reset the damage to the max
+        clearInterval(this.elementalDamageIntervalId)
+
+
+        let damage = amount
+        const doDamage = () => {
+            this.healthPoints -= damage
+            damage -= 1
+        }
+
+        doDamage()
+        this.elementalDamageIntervalId = setInterval(() => {
+            doDamage()
+
+            if (damage <= 0) {
+                clearInterval(this.elementalDamageIntervalId)
+            }
+        }, 1000)
     }
 
     /**

@@ -6,9 +6,11 @@ import {centerPositionInTile} from "../../helper/canvas.js";
 import {Sprite} from "../../assets/sprites/sprite.js";
 import {FRAMES_PER_SECOND} from "../../renderer.constants.js";
 import {copy} from "../../helper/util.js";
-import {Upgrade} from "./upgrades/upgrade";
+import {Upgrade} from "./upgrades/upgrade.js";
 
 export type ElementTowerName = 'arrow' | 'rocks'
+
+export type ElementalDamage = 'fire'
 
 export abstract class ElementTower extends GameElement {
     public abstract name: ElementTowerName
@@ -29,6 +31,10 @@ export abstract class ElementTower extends GameElement {
     public abstract attackAnimation: AnimationAttack
 
     public abstract availableUpgrades: Upgrade[]
+
+    public elementalDamage: Record<ElementalDamage, number> = {
+        fire: 0,
+    }
 
     public cooldown: number = 0
 
